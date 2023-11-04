@@ -21,7 +21,7 @@
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
-                        <span class="hide-menu">Dashboard</span>
+                        <span class="hide-menu">Pegawai</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">
