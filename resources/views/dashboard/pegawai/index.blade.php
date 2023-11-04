@@ -2,6 +2,6 @@
 
 @section('app-content')
     <div class="container-fluid">
-        <h1>Selamat Datang {{ $pengguna }}</h1>
+        <h1>Pegawai</h1>
     </div>
 @endsection
