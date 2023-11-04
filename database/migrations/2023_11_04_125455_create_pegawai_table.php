@@ -16,10 +16,10 @@ return new class extends Migration
             $table->id();
             $table->string('nip')->unique();
             $table->string('nama');
-            $table->enum('jabatan', PegawaiJabatan::cases());
-            $table->enum('jenis_kelamin', PegawaiJenisKelamin::cases());
+            $table->enum('jabatan', array_column(PegawaiJabatan::cases(), 'value'));
+            $table->enum('jenis_kelamin', array_column(PegawaiJenisKelamin::cases(), 'value'));
             $table->string('nomor_telepon')->unique();
-            $table->enum('pendidikan_terakhir', PendidikanTerakhir::cases());
+            $table->enum('pendidikan_terakhir', array_column(PendidikanTerakhir::cases(), 'value'));
             $table->date('tmt');
             $table->date('tanggal_lahir');
             $table->string('alamat');

@@ -14,7 +14,7 @@ return new class extends Migration
             $table->id();
             $table->string('username')->unique();
             $table->string('password');
-            $table->enum('status', UserStatus::cases());
+            $table->enum('status', array_column(UserStatus::cases(), 'value'));
             $table->timestamps();
         });
     }
