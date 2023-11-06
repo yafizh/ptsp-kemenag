@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create((new RumahIbadah)->getTable(), function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nama');
             $table->timestamps();
         });
     }

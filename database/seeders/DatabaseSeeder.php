@@ -17,5 +17,11 @@ class DatabaseSeeder extends Seeder
             'password' => 1,
             'status' => UserStatus::ADMIN
         ]);
+
+        $this->call([
+            RumahIbadahSeeder::class,
+            JenisCutiSeeder::class,
+            JenisCutiSeeder::class,
+        ]);
     }
 }
