@@ -20,9 +20,7 @@ class Pegawai extends Model
         'tmt',
         'tanggal_lahir',
         'alamat',
-        'file_foto',
-        'file_ijazah',
-        'file_sk_pengangkatan'
+        'file_foto'
     ];
 
     protected $casts = [

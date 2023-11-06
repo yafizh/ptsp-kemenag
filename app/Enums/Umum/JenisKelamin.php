@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Enums\Pegawai;
+namespace App\Enums\Umum;
 
-enum PegawaiJenisKelamin: string
+enum JenisKelamin: string
 {
     case LAKI_LAKI = 'Laki - Laki';
     case PEREMPUAN = 'Perempuan';

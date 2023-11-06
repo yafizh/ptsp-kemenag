@@ -25,7 +25,6 @@ Route::post('/auth', [AuthController::class, 'auth']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('auth')
-    ->prefix('admin')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'admin']);
         Route::resource('pegawai', PegawaiController::class);

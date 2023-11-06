@@ -7,6 +7,14 @@
     <title>Modernize Free</title>
     <link rel="shortcut icon" type="image/png" href="/assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="/assets/css/styles.min.css" />
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.7/r-2.5.0/datatables.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <style>
+        .td-fit {
+            width: 1%;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,6 +34,18 @@
     <script src="/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
     <script src="/assets/libs/simplebar/dist/simplebar.js"></script>
     <script src="/assets/js/dashboard.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.7/r-2.5.0/datatables.min.js"></script>
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script>
+        if (document.getElementById('datatable'))
+            new DataTable('#datatable', {
+                order: [],
+            });
+    </script>
+    <script>
+        const inputElement = document.querySelector('#filepond');
+        const pond = FilePond.create(inputElement);
+    </script>
 </body>
 
 </html>
