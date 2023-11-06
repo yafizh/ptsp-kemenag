@@ -4,10 +4,10 @@
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col-12 col-md-6">
-                <h3>Pegawai</h3>
+                <h3>Jenis Cuti</h3>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
-                <a href="/pegawai/create" class="btn btn-primary">Tambah</a>
+                <a href="/jenis-cuti/create" class="btn btn-primary">Tambah</a>
             </div>
         </div>
         <div class="row">
@@ -23,23 +23,17 @@
                             <thead>
                                 <tr>
                                     <th class="text-center align-middle td-fit">No</th>
-                                    <th class="text-center align-middle">NIP</th>
                                     <th class="text-center align-middle">Nama</th>
-                                    <th class="text-center align-middle">Jabatan</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                    <th class="text-center">1</th>
+                                    <td class="text-center">Mark</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
+                                    <th class="text-center">2</th>
+                                    <td class="text-center">Jacob</td>
                                 </tr>
                             </tbody>
                         </table>

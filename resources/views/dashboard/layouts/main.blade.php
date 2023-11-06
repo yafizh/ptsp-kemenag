@@ -39,7 +39,7 @@
     <script>
         if (document.getElementById('datatable'))
             new DataTable('#datatable', {
-                order: [],
+                ordering: false
             });
     </script>
     <script>
