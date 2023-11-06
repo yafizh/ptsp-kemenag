@@ -15,7 +15,7 @@ enum PegawaiJabatan: string
         return match ($this) {
             PegawaiJabatan::KEPALA_KEMENAG => UserStatus::PIMPIMAN,
             PegawaiJabatan::KABAG_TU => UserStatus::PIMPIMAN,
-            PegawaiJabatan::KABAG_TU => UserStatus::PEGAWAI,
+            PegawaiJabatan::PEGAWAI => UserStatus::PEGAWAI,
         };
     }
 }
