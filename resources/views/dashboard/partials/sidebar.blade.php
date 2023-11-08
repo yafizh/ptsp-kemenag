@@ -19,8 +19,8 @@
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
-                        'active' => request()->segment(1) == 'pegawai',
-                    ]) href="/pegawai" aria-expanded="false">
+                        'active' => request()->segment(2) == 'pegawai',
+                    ]) href="/{{ auth()->user()->status->route() }}/pegawai" aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
@@ -34,8 +34,8 @@
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
-                        'active' => request()->segment(1) == 'rumah-ibadah',
-                    ]) href="/rumah-ibadah" aria-expanded="false">
+                        'active' => request()->segment(2) == 'rumah-ibadah',
+                    ]) href="/{{ auth()->user()->status->route() }}/rumah-ibadah" aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
@@ -45,8 +45,8 @@
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
-                        'active' => request()->segment(1) == 'jenis-cuti',
-                    ]) href="/jenis-cuti" aria-expanded="false">
+                        'active' => request()->segment(2) == 'jenis-cuti',
+                    ]) href="/{{ auth()->user()->status->route() }}/jenis-cuti" aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
@@ -56,8 +56,8 @@
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
-                        'active' => request()->segment(1) == 'jenis-kendaraan',
-                    ]) href="/jenis-kendaraan" aria-expanded="false">
+                        'active' => request()->segment(2) == 'jenis-kendaraan',
+                    ]) href="/{{ auth()->user()->status->route() }}/jenis-kendaraan" aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
@@ -71,8 +71,8 @@
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
-                        'active' => request()->segment(1) == 'surat-cuti',
-                    ]) href="./ui-buttons.html" aria-expanded="false">
+                        'active' => request()->segment(2) == 'jenis-kendaraan',
+                    ]) href="/{{ auth()->user()->status->route() }}/1" aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
@@ -83,8 +83,8 @@
                     <a @class([
                         'sidebar-link',
                         'text-wrap',
-                        'active' => request()->segment(1) == 'spdp',
-                    ]) href="./ui-buttons.html" aria-expanded="false">
+                        'active' => request()->segment(2) == 'spdp',
+                    ]) href="/{{ auth()->user()->status->route() }}/1" aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
@@ -98,8 +98,8 @@
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
-                        'active' => request()->segment(1) == 'surat-izin-riset',
-                    ]) href="/surat-izin-riset" aria-expanded="false">
+                        'active' => request()->segment(2) == 'surat-izin-riset',
+                    ]) href="/{{ auth()->user()->status->route() }}/surat-izin-riset" aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
@@ -109,8 +109,8 @@
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
-                        'active' => request()->segment(1) == 'surat-pkl-magang',
-                    ]) href="/surat-pkl-magang" aria-expanded="false">
+                        'active' => request()->segment(2) == 'surat-pkl-magang',
+                    ]) href="/{{ auth()->user()->status->route() }}/surat-pkl-magang" aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
@@ -120,8 +120,9 @@
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
-                        'active' => request()->segment(1) == 'surat-ukur-kibtal',
-                    ]) href="/surat-ukur-kiblat" aria-expanded="false">
+                        'active' => request()->segment(2) == 'surat-ukur-kibtal',
+                    ]) href="/{{ auth()->user()->status->route() }}/surat-ukur-kiblat"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>

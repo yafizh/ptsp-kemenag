@@ -26,13 +26,13 @@ class AuthController extends Controller
             $user = Auth::user();
             switch ($user->status) {
                 case UserStatus::ADMIN:
-                    return redirect()->intended('/admin');
+                    return redirect()->intended(UserStatus::ADMIN->route());
                     break;
                 case UserStatus::PIMPIMAN:
-                    return redirect()->intended('/pimpinan');
+                    return redirect()->intended(UserStatus::PIMPIMAN->route());
                     break;
                 case UserStatus::PEGAWAI:
-                    return redirect()->intended('/pegawai');
+                    return redirect()->intended(UserStatus::PEGAWAI->route());
                     break;
             }
         }
