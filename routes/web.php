@@ -7,7 +7,7 @@ use App\Http\Controllers\Master\JenisCutiController;
 use App\Http\Controllers\Master\JenisKendaraanController;
 use App\Http\Controllers\Master\RumahIbadahController;
 use App\Http\Controllers\PegawaiController;
-use App\Http\Controllers\PermohonanController;
+use App\Http\Controllers\Permohonan\PermohonanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +20,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    // return view('dashboard.index');
-});
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/auth', [AuthController::class, 'auth']);
@@ -50,4 +46,7 @@ Route::middleware('auth')->group(function () {
 Route::controller(PermohonanController::class)
     ->group(function () {
         Route::get('/', 'index');
+        Route::get('/permohonan-magang-pkl', 'magangPKL');
+        Route::get('/permohonan-pengukuran-kiblat', 'pengukuranKiblat');
+        Route::get('/permohonan-pendaftaran-rumah-ibadah', 'pendaftaranRumahIbadah');
     });
