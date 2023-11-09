@@ -1,13 +1,15 @@
 <aside class="left-sidebar">
     <!-- Sidebar scroll-->
     <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="./index.html" class="text-nowrap logo-img">
-                <img src="/assets/images/logos/dark-logo.svg" width="180" alt="" />
-            </a>
+        <div class="d-flex justify-content-end p-3">
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8"></i>
             </div>
+        </div>
+        <div class="brand-logo d-flex align-items-center justify-content-center flex-column text-center">
+            <img src="/assets/images/logos/kemenag.png" width="120" />
+            <h5 class="mb-0 my-3">PELAYANAN TERPADU SATU PINTU (PTSP)</h5>
+            <h5>KEMENTERIAN AGAMA</h5>
         </div>
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
@@ -20,7 +22,8 @@
                     <a @class([
                         'sidebar-link',
                         'active' => request()->segment(2) == 'pegawai',
-                    ]) href="/{{ auth()->user()->status->route() }}/pegawai" aria-expanded="false">
+                    ]) href="/{{ auth()->user()->status->route() }}/pegawai"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
@@ -35,7 +38,8 @@
                     <a @class([
                         'sidebar-link',
                         'active' => request()->segment(2) == 'rumah-ibadah',
-                    ]) href="/{{ auth()->user()->status->route() }}/rumah-ibadah" aria-expanded="false">
+                    ]) href="/{{ auth()->user()->status->route() }}/rumah-ibadah"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
@@ -46,7 +50,8 @@
                     <a @class([
                         'sidebar-link',
                         'active' => request()->segment(2) == 'jenis-cuti',
-                    ]) href="/{{ auth()->user()->status->route() }}/jenis-cuti" aria-expanded="false">
+                    ]) href="/{{ auth()->user()->status->route() }}/jenis-cuti"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
@@ -57,7 +62,8 @@
                     <a @class([
                         'sidebar-link',
                         'active' => request()->segment(2) == 'jenis-kendaraan',
-                    ]) href="/{{ auth()->user()->status->route() }}/jenis-kendaraan" aria-expanded="false">
+                    ]) href="/{{ auth()->user()->status->route() }}/jenis-kendaraan"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
@@ -71,8 +77,9 @@
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
-                        'active' => request()->segment(2) == 'jenis-kendaraan',
-                    ]) href="/{{ auth()->user()->status->route() }}/1" aria-expanded="false">
+                        'active' => request()->segment(2) == 'surat-cuti',
+                    ]) href="/{{ auth()->user()->status->route() }}/1"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
@@ -84,7 +91,8 @@
                         'sidebar-link',
                         'text-wrap',
                         'active' => request()->segment(2) == 'spdp',
-                    ]) href="/{{ auth()->user()->status->route() }}/1" aria-expanded="false">
+                    ]) href="/{{ auth()->user()->status->route() }}/2"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
@@ -99,22 +107,24 @@
                     <a @class([
                         'sidebar-link',
                         'active' => request()->segment(2) == 'surat-izin-riset',
-                    ]) href="/{{ auth()->user()->status->route() }}/surat-izin-riset" aria-expanded="false">
+                    ]) href="/{{ auth()->user()->status->route() }}/surat-izin-riset"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
-                        <span class="hide-menu">Surat Izin Riset</span>
+                        <span class="hide-menu">Pendaftaran Rumah Ibadah</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
                         'active' => request()->segment(2) == 'surat-pkl-magang',
-                    ]) href="/{{ auth()->user()->status->route() }}/surat-pkl-magang" aria-expanded="false">
+                    ]) href="/{{ auth()->user()->status->route() }}/surat-pkl-magang"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
-                        <span class="hide-menu">Surat PKL/Magang</span>
+                        <span class="hide-menu">PKL/Magang</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -126,7 +136,7 @@
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
-                        <span class="hide-menu">Surat Ukur Kiblat</span>
+                        <span class="hide-menu">Pengukuran Kiblat</span>
                     </a>
                 </li>
             </ul>

@@ -1,6 +1,7 @@
 @extends('permohonan.layout')
 
 @section('app-content')
+    <a href="/login" class="btn btn-light m-3" style="position: absolute; top: 0; right: 0;">LOGIN PEGAWAI</a>
     <div class="row mb-3">
         <div class="col-12 d-flex justify-content-center">
             <img src="/assets/images/logos/kemenag.png" style="width: 10rem;">

@@ -14,6 +14,10 @@
             width: 1%;
             white-space: nowrap;
         }
+
+        .left-sidebar .scroll-sidebar {
+            height: calc(100vh - 250px) !important;
+        }
     </style>
 </head>
 
