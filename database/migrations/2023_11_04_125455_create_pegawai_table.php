@@ -3,7 +3,7 @@
 use App\Enums\Pegawai\PegawaiJabatan;
 use App\Enums\Umum\JenisKelamin;
 use App\Enums\Umum\PendidikanTerakhir;
-use App\Models\Pegawai;
+use App\Models\Pegawai\Pegawai;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create((new Pegawai)->getTable(), function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_pengguna');
             $table->string('nip')->unique();
             $table->string('nama');
             $table->enum('jabatan', array_column(PegawaiJabatan::cases(), 'value'));
@@ -22,8 +23,8 @@ return new class extends Migration
             $table->enum('pendidikan_terakhir', array_column(PendidikanTerakhir::cases(), 'value'));
             $table->date('tmt');
             $table->date('tanggal_lahir');
+            $table->string('tempat_lahir');
             $table->string('alamat');
-            $table->string('file_foto');
             $table->timestamps();
         });
     }

@@ -4,14 +4,16 @@
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col-12 col-md-6">
-                <h3>Tambah Pegawai</h3>
+                <h3>Edit Pegawai</h3>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
                 <a href="/{{ auth()->user()->status->route() }}/pegawai" class="btn btn-secondary">Kembali</a>
             </div>
         </div>
-        <form action="/{{ auth()->user()->status->route() }}/pegawai" method="POST" enctype="multipart/form-data">
+        <form action="/{{ auth()->user()->status->route() }}/pegawai/{{ $pegawai->id }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="row">
                 <div class="col-12">
                     @if ($errors->any())
@@ -30,14 +32,14 @@
                                     <div class="mb-3">
                                         <label for="nip" class="form-label">NIP</label>
                                         <input type="text" class="form-control" id="nip" name="nip"
-                                            value="{{ old('nip') }}" required>
+                                            value="{{ old('nip', $pegawai->nip) }}" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="nama" class="form-label">Nama</label>
                                         <input type="text" class="form-control" id="nama" name="nama"
-                                            value="{{ old('nama') }}" required>
+                                            value="{{ old('nama', $pegawai->nama) }}" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -47,7 +49,7 @@
                                             <option value="" disabled selected>Pilih Jabatan</option>
                                             @foreach (\App\Enums\Pegawai\PegawaiJabatan::cases() as $jabatan)
                                                 <option value="{{ $jabatan->value }}"
-                                                    {{ $jabatan->value == old('jabatan') ? 'selected' : '' }}>
+                                                    {{ $jabatan->value == old('jabatan', $pegawai->jabatan->value) ? 'selected' : '' }}>
                                                     {{ $jabatan->value }}</option>
                                             @endforeach
                                         </select>
@@ -60,7 +62,7 @@
                                             <option value="" disabled selected>Pilih Jenis Kelamin</option>
                                             @foreach (\App\Enums\Umum\JenisKelamin::cases() as $jenisKelamin)
                                                 <option value="{{ $jenisKelamin->value }}"
-                                                    {{ $jenisKelamin->value == old('jenis_kelamin') ? 'selected' : '' }}>
+                                                    {{ $jenisKelamin->value == old('jenis_kelamin', $pegawai->jenis_kelamin->value) ? 'selected' : '' }}>
                                                     {{ $jenisKelamin->value }}</option>
                                             @endforeach
                                         </select>
@@ -70,7 +72,7 @@
                                     <div class="mb-3">
                                         <label for="nomor_telepon" class="form-label">Nomor Telepon</label>
                                         <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon"
-                                            value="{{ old('nomor_telepon') }}" required>
+                                            value="{{ old('nomor_telepon', $pegawai->nomor_telepon) }}" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -81,7 +83,7 @@
                                             <option value="" disabled selected>Pilih Pendidikan Terakhir</option>
                                             @foreach (\App\Enums\Umum\PendidikanTerakhir::cases() as $pendidikanTerakhir)
                                                 <option value="{{ $pendidikanTerakhir->value }}"
-                                                    {{ $pendidikanTerakhir->value == old('pendidikan_terakhir') ? 'selected' : '' }}>
+                                                    {{ $pendidikanTerakhir->value == old('pendidikan_terakhir', $pegawai->pendidikan_terakhir->value) ? 'selected' : '' }}>
                                                     {{ $pendidikanTerakhir->value }}</option>
                                             @endforeach
                                         </select>
@@ -91,69 +93,81 @@
                                     <div class="mb-3">
                                         <label for="tmt" class="form-label">TMT</label>
                                         <input type="date" class="form-control" id="tmt" name="tmt"
-                                            value="{{ old('tmt') }}" required>
+                                            value="{{ old('tmt', $pegawai->tmt) }}" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
                                         <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-                                            value="{{ old('tanggal_lahir') }}" required>
+                                            value="{{ old('tanggal_lahir', $pegawai->tanggal_lahir) }}" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
                                         <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
-                                            value="{{ old('tempat_lahir') }}" required>
+                                            value="{{ old('tempat_lahir', $pegawai->tempat_lahir) }}" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="alamat" class="form-label">Alamat</label>
-                                        <textarea name="alamat" id="alamat" class="form-control">{{ old('alamat') }}</textarea>
+                                        <textarea name="alamat" id="alamat" class="form-control">{{ old('alamat', $pegawai->alamat) }}</textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex">
-                                <div class="form-text">NIP akan digunakan sebagai username dan password saat login
-                                    untuk
-                                    pertama kalinya.</div>
-                                <button type="submit" class="btn btn-primary">Tambah</button>
+                            <div class="d-flex justify-content-between">
+                                <div class="form-text">Perubahan NIP akan digunakan sebagai username dan password saat
+                                    login.</div>
+                                <button type="submit" class="btn btn-primary">Edit</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
                     <h5 class="mb-3">Foto Pegawai</h5>
-                    <input type="file" id="filepond" name="foto" required credits="false">
+                    <input type="file" id="filepond" name="foto" credits="false" required>
                 </div>
             </div>
         </form>
     </div>
+    <script src="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.js"></script>
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 
     <script>
+        FilePond.registerPlugin(FilePondPluginFilePoster);
         FilePond.registerPlugin(FilePondPluginImagePreview);
         FilePond.registerPlugin(FilePondPluginFileValidateType);
-        // Get a reference to the file input element
-        const inputElement = document.querySelector('input[type="file"]');
 
-        const pond = FilePond.create(inputElement).setOptions({
+        const inputElement = document.querySelector('input[type="file"]');
+        const pond = FilePond.create(inputElement);
+        pond.setOptions({
             acceptedFileTypes: ['image/*'],
             fileValidateTypeDetectType: (source, type) =>
                 new Promise((resolve, reject) => {
                     resolve(type);
                 }),
+            files: [{
+                source: {{ Js::from($pegawai->foto->nama_file) }},
+                options: {
+                    type: 'local',
+                    file: {
+                        name: {{ Js::from($pegawai->foto->nama_file_asli) }},
+                    },
+                    metadata: {
+                        poster: {{ Js::from(asset('storage/' . $pegawai->foto->nama_file)) }},
+                    },
+                },
+            }],
             server: {
                 process: '/uploads/process',
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('input[name=_token]').value,
                 },
             },
-            // allowMultiple: true,
         });
     </script>
 @endsection

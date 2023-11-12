@@ -8,6 +8,7 @@ use App\Http\Controllers\Master\JenisKendaraanController;
 use App\Http\Controllers\Master\RumahIbadahController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\Permohonan\PermohonanController;
+use App\Http\Controllers\UploadFileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,8 @@ Route::post('/auth', [AuthController::class, 'auth']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('auth')->group(function () {
+    Route::post('uploads/process', [UploadFileController::class, 'process']);
+
     Route::prefix(UserStatus::ADMIN->route())->group(function () {
         Route::get('/', [DashboardController::class, 'admin']);
         Route::resource('pegawai', PegawaiController::class);

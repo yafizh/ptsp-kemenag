@@ -7,7 +7,7 @@
                 <h3>Pegawai</h3>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
-                <a href="/pegawai/create" class="btn btn-primary">Tambah</a>
+                <a href="/{{ auth()->user()->status->route() }}/pegawai/create" class="btn btn-primary">Tambah</a>
             </div>
         </div>
         <div class="row">
@@ -26,21 +26,38 @@
                                     <th class="text-center align-middle">NIP</th>
                                     <th class="text-center align-middle">Nama</th>
                                     <th class="text-center align-middle">Jabatan</th>
+                                    <th class="text-center align-middle">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
+                                @foreach ($pegawai as $item)
+                                    <tr>
+                                        <th class="text-center td-fit">{{ $loop->iteration }}</th>
+                                        <td class="text-center td-fit">{{ $item->nip }}</td>
+                                        <td>{{ $item->nama }}</td>
+                                        <td class="text-center">{{ $item->jabatan }}</td>
+                                        <td class="td-fit">
+                                            <div class="d-flex gap-1">
+                                                <a href="/{{ auth()->user()->status->route() }}/pegawai/{{ $item->id }}"
+                                                    class="btn btn-sm btn-info">
+                                                    Detail
+                                                </a>
+                                                <a href="/{{ auth()->user()->status->route() }}/pegawai/{{ $item->id }}/edit"
+                                                    class="btn btn-sm btn-warning">
+                                                    Edit
+                                                </a>
+                                                <form
+                                                    action="/{{ auth()->user()->status->route() }}/pegawai/{{ $item->id }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Yakin?')">Hapus</a>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
