@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [DashboardController::class, 'pegawai']);
     });
 
-    Route::prefix(UserStatus::PIMPIMAN->route())->group(function () {
+    Route::prefix(UserStatus::PIMPINAN->route())->group(function () {
         Route::get('/', [DashboardController::class, 'pimpinan']);
     });
 });

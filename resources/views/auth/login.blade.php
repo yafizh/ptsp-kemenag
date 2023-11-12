@@ -21,7 +21,12 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <div class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="/assets/images/logos/kemenag.png" width="100" alt="">
+                                    <a href="/">
+                                        <img src="/assets/images/logos/kemenag.png" width="100" alt="">
+                                        <h5 class="mb-0 my-3">PELAYANAN TERPADU SATU PINTU (PTSP)</h5>
+                                        <h5>KEMENTERIAN AGAMA</h5>
+                                    </a>
+
                                 </div>
                                 @if (session('failed'))
                                     <div class="alert alert-danger" role="alert">
@@ -40,7 +45,7 @@
                                         <input type="password" class="form-control" name="password" id="password">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-end mb-4">
-                                        <a class="text-primary fw-bold" href="./index.html">Lupa Password ?</a>
+                                        <a class="text-primary fw-bold" href="#">Lupa Password ?</a>
                                     </div>
                                     <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">
                                         Login
