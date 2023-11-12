@@ -13,8 +13,8 @@ enum PegawaiJabatan: string
     public function statusUser()
     {
         return match ($this) {
-            PegawaiJabatan::KEPALA_KEMENAG => UserStatus::PIMPIMAN,
-            PegawaiJabatan::KABAG_TU => UserStatus::PIMPIMAN,
+            PegawaiJabatan::KEPALA_KEMENAG => UserStatus::PIMPINAN,
+            PegawaiJabatan::KABAG_TU => UserStatus::PIMPINAN,
             PegawaiJabatan::PEGAWAI => UserStatus::PEGAWAI,
         };
     }

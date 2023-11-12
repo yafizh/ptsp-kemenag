@@ -28,8 +28,8 @@ class AuthController extends Controller
                 case UserStatus::ADMIN:
                     return redirect()->intended(UserStatus::ADMIN->route());
                     break;
-                case UserStatus::PIMPIMAN:
-                    return redirect()->intended(UserStatus::PIMPIMAN->route());
+                case UserStatus::PIMPINAN:
+                    return redirect()->intended(UserStatus::PIMPINAN->route());
                     break;
                 case UserStatus::PEGAWAI:
                     return redirect()->intended(UserStatus::PEGAWAI->route());

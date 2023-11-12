@@ -38,7 +38,7 @@
                                     <div class="mb-3">
                                         <label for="username" class="form-label">NIP</label>
                                         <input type="text" class="form-control" name="username" id="username"
-                                            required>
+                                            required autofocus>
                                     </div>
                                     <div class="mb-4">
                                         <label for="password" class="form-label">Password</label>

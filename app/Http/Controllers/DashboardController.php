@@ -15,6 +15,9 @@ class DashboardController extends Controller
 
     public function pimpinan()
     {
+        return view('dashboard.index', [
+            'pengguna' => 'Pimpinan'
+        ]);
     }
 
     public function pegawai()

@@ -52,6 +52,12 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix(UserStatus::PIMPINAN->route())->group(function () {
         Route::get('/', [DashboardController::class, 'pimpinan']);
+        Route::controller(PermohonanMagangPKLController::class)->group(function () {
+            Route::get('/permohonan-magang-pkl', 'index');
+            Route::get('/permohonan-magang-pkl/{permohonan}', 'show');
+            Route::post('/permohonan-magang-pkl/{permohonan}/tolak', 'tolak');
+            Route::post('/permohonan-magang-pkl/{permohonan}/terima', 'terima');
+        });
     });
 });
 

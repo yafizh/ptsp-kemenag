@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Pegawai\PegawaiJabatan;
 use App\Models\Pegawai\Pegawai;
 use App\Models\Pegawai\PegawaiFoto;
 use App\Models\Pengguna;
@@ -42,9 +43,15 @@ class PegawaiController extends Controller
         ]);
 
         DB::transaction(function () use ($validatedData) {
+            $userStatus = null;
+            foreach (PegawaiJabatan::cases() as $jabatan) {
+                if ($jabatan->value == $validatedData['jabatan'])
+                    $userStatus = $jabatan->statusUser();
+            }
             $pengguna = Pengguna::create([
-                'username' => $validatedData['nip'],
-                'password' => $validatedData['nip']
+                'username'  => $validatedData['nip'],
+                'password'  => $validatedData['nip'],
+                'status'    => $userStatus
             ]);
 
             $uploadFile = UploadFile::where('nama_file', $validatedData['foto'])->first();
@@ -109,8 +116,14 @@ class PegawaiController extends Controller
         ]);
 
         DB::transaction(function () use ($validatedData, $pegawai) {
+            $userStatus = null;
+            foreach (PegawaiJabatan::cases() as $jabatan) {
+                if ($jabatan->value == $validatedData['jabatan'])
+                    $userStatus = $jabatan->statusUser();
+            }
             $pegawai->pengguna->update([
                 'username' => $validatedData['nip'],
+                'status'    => $userStatus
             ]);
 
             if ($validatedData['foto'] != $pegawai->foto->nama_file) {

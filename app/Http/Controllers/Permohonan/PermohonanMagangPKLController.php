@@ -50,7 +50,6 @@ class PermohonanMagangPKLController extends Controller
 
     public function terima(Request $request, Permohonan $permohonan)
     {
-        dd(config('services.green_api.base_url') . '/waInstance' . config('services.green_api.id_instance') . '/sendMessage/' . config('services.green_api.api_token_instance'));
         PermohonanTerverifikasi::create([
             'id_permohonan'      => $permohonan->id,
             'id_pengguna'        => auth()->user()->id,

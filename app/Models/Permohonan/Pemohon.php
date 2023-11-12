@@ -21,5 +21,7 @@ class Pemohon extends Model
 
         if ($this->nomor_telepon[0] == '0')
             return "62" . substr($this->nomor_telepon, 1) . "@c.us";
+
+        return $this->nomor_telepon;
     }
 }
