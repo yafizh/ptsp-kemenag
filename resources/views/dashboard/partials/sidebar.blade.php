@@ -123,7 +123,7 @@
                         <a @class([
                             'sidebar-link',
                             'active' => request()->segment(2) == 'surat-pkl-magang',
-                        ]) href="/{{ auth()->user()->status->route() }}/surat-pkl-magang"
+                        ]) href="/{{ auth()->user()->status->route() }}/permohonan-magang-pkl"
                             aria-expanded="false">
                             <span>
                                 <i class="ti ti-article"></i>

@@ -8,7 +8,9 @@ use App\Http\Controllers\Master\JenisKendaraanController;
 use App\Http\Controllers\Master\RumahIbadahController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\Permohonan\PermohonanController;
+use App\Http\Controllers\Permohonan\PermohonanMagangPKLController;
 use App\Http\Controllers\UploadFileController;
+use App\Models\Permohonan\JenisPermohonan\PermohonanMagangPKL;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +37,13 @@ Route::middleware('auth')->group(function () {
         Route::resource('rumah-ibadah', RumahIbadahController::class);
         Route::resource('jenis-cuti', JenisCutiController::class);
         Route::resource('jenis-kendaraan', JenisKendaraanController::class);
+
+        Route::controller(PermohonanMagangPKLController::class)->group(function () {
+            Route::get('/permohonan-magang-pkl', 'index');
+            Route::get('/permohonan-magang-pkl/{permohonan}', 'show');
+            Route::post('/permohonan-magang-pkl/{permohonan}/tolak', 'tolak');
+            Route::post('/permohonan-magang-pkl/{permohonan}/terima', 'terima');
+        });
     });
 
     Route::prefix(UserStatus::PEGAWAI->route())->group(function () {
@@ -50,6 +59,7 @@ Route::controller(PermohonanController::class)
     ->group(function () {
         Route::get('/', 'index');
         Route::get('/permohonan-magang-pkl', 'magangPKL');
+        Route::post('/permohonan-magang-pkl', 'storeMagangPKL');
         Route::get('/permohonan-pengukuran-kiblat', 'pengukuranKiblat');
         Route::get('/permohonan-pendaftaran-rumah-ibadah', 'pendaftaranRumahIbadah');
     });

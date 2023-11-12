@@ -14,7 +14,12 @@
     <div class="row mb-3">
         <div class="card border-0 shadow">
             <div class="card-body">
-                <form action="" method="POST">
+                @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }} Tunggu informasi terbaru yang akan diberikan melalui pesan whatsapp.
+                    </div>
+                @endif
+                <form action="/permohonan-magang-pkl" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="nama_pemohon" class="form-label">Nama Permohon</label>

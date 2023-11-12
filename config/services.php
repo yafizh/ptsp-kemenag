@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'green_api' => [
+        'base_url' => env('GREEN_API_BASE_URL'),
+        'id_instance' => env('GREEN_API_ID_INSTANCE'),
+        'api_token_instance' => env('GREEN_API_API_TOKEN_INSTANCE'),
+    ]
+
 ];
