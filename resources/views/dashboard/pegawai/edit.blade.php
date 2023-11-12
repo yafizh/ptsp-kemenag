@@ -120,7 +120,7 @@
                             <div class="d-flex justify-content-between">
                                 <div class="form-text">Perubahan NIP akan digunakan sebagai username dan password saat
                                     login.</div>
-                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <button type="submit" class="btn btn-primary">Perbaharui</button>
                             </div>
                         </div>
                     </div>
