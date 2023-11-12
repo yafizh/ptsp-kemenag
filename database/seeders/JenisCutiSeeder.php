@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Master\RumahIbadah;
+use App\Models\Master\JenisCuti;
 use Illuminate\Database\Seeder;
 
 class JenisCutiSeeder extends Seeder
@@ -17,7 +17,7 @@ class JenisCutiSeeder extends Seeder
             'Cuti Menikah'
         ];
         foreach ($jenisCuti as $value) {
-            RumahIbadah::create([
+            JenisCuti::create([
                 'nama' => $value
             ]);
         }
