@@ -22,12 +22,14 @@ class PermohonanMagangPKL extends Model
 
     public function tanggalMulaiFormatIndonesia(): string
     {
-        return Carbon::createFromDate($this->tanggal_mulai)->locale('ID')->format('d F Y');
+        $tanggalMulai = Carbon::createFromDate($this->tanggal_mulai)->locale('ID');
+        return $tanggalMulai->day . " " . $tanggalMulai->getTranslatedMonthName() . " " . $tanggalMulai->year;
     }
 
     public function tanggalSelesaiFormatIndonesia(): string
     {
-        return Carbon::createFromDate($this->tanggal_selesai)->locale('ID')->format('d F Y');
+        $tanggalSelesai = Carbon::createFromDate($this->tanggal_selesai)->locale('ID');
+        return $tanggalSelesai->day . " " . $tanggalSelesai->getTranslatedMonthName() . " " . $tanggalSelesai->year;
     }
 
     public function permohonan(): BelongsTo

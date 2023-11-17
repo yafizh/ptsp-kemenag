@@ -85,15 +85,15 @@
                         <span>
                             <i class="ti ti-article"></i>
                         </span>
-                        <span class="hide-menu">Surat Cuti</span>
+                        <span class="hide-menu">Cuti</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
                         'text-wrap',
-                        'active' => request()->segment(2) == 'spdp',
-                    ]) href="/{{ auth()->user()->status->route() }}/2"
+                        'active' => request()->segment(2) == 'pengajuan-spdp',
+                    ]) href="/{{ auth()->user()->status->route() }}/pengajuan-spdp"
                         aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>

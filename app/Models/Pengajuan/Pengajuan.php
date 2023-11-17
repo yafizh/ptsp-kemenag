@@ -3,6 +3,7 @@
 namespace App\Models\Pengajuan;
 
 use App\Models\Pengajuan\JenisPengajuan\PengajuanCuti;
+use App\Models\Pengajuan\JenisPengajuan\PengajuanSPDP;
 use App\Models\Pengguna;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,11 @@ class Pengajuan extends Model
     public function pengajuanCuti(): HasOne
     {
         return $this->hasOne(PengajuanCuti::class, 'id_pengajuan', 'id');
+    }
+
+    public function pengajuanSPDP(): HasOne
+    {
+        return $this->hasOne(PengajuanSPDP::class, 'id_pengajuan', 'id');
     }
 
     public function pengguna(): BelongsTo

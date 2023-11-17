@@ -24,6 +24,7 @@ class PengajuanTerverifikasi extends Model
 
     public function tanggalVerifikasiFormatIndoensia(): string
     {
-        return Carbon::createFromDate($this->tanggal_waktu_verifikasi)->locale('ID')->format('d F Y');
+        $tanggalVerifikasi = Carbon::createFromDate($this->tanggal_waktu_verifikasi)->locale('ID');
+        return $tanggalVerifikasi->day . " " . $tanggalVerifikasi->getTranslatedMonthName() . " " . $tanggalVerifikasi->year;
     }
 }

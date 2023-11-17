@@ -18,7 +18,8 @@ class Permohonan extends Model
 
     public function tanggalPermohonanFormatIndonesia(): string
     {
-        return Carbon::createFromDate($this->tanggal_permohonan)->locale('ID')->format('d F Y');
+        $tanggalPermohonan = Carbon::createFromDate($this->tanggal_permohonan)->locale('ID');
+        return $tanggalPermohonan->day . " " . $tanggalPermohonan->getTranslatedMonthName() . " " . $tanggalPermohonan->year;
     }
 
     public function pemohon(): HasOne

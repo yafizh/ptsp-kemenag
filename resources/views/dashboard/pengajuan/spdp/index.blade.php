@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col-12 col-md-6">
-                <h3>Pengajuan Cuti</h3>
+                <h3>Pengajuan SPDP</h3>
             </div>
             @if (auth()->user()->status == \App\Enums\User\UserStatus::PEGAWAI ||
                     auth()->user()->status == \App\Enums\User\UserStatus::PIMPINAN)
                 <div class="col-12 col-md-6 d-flex justify-content-end">
-                    <a href="/{{ auth()->user()->status->route() }}/pengajuan-cuti/create" class="btn btn-primary">
+                    <a href="/{{ auth()->user()->status->route() }}/pengajuan-spdp/create" class="btn btn-primary">
                         Pengajuan Baru
                     </a>
                 </div>
@@ -31,7 +31,7 @@
                                     <th class="text-center align-middle">NIP</th>
                                     <th class="text-center align-middle">Nama</th>
                                     <th class="text-center align-middle">Tanggal Pengajuan</th>
-                                    <th class="text-center align-middle">Jenis Cuti</th>
+                                    <th class="text-center align-middle">Tujuan</th>
                                     <th class="text-center align-middle">Status</th>
                                     <th class="text-center align-middle">Aksi</th>
                                 </tr>
@@ -39,12 +39,12 @@
                             <tbody>
                                 @foreach ($pengajuan as $item)
                                     <tr>
-                                        <th class="text-center td-fit">{{ $loop->iteration }}</th>
-                                        <td class="text-center">{{ $item['nip'] }}</td>
-                                        <td>{{ $item['nama'] }}</td>
-                                        <td class="text-center">{{ $item['tanggal_pengajuan'] }}</td>
-                                        <td class="text-center">{{ $item['jenis_cuti'] }}</td>
-                                        <td class="text-center">
+                                        <th class="text-center align-middle td-fit">{{ $loop->iteration }}</th>
+                                        <td class="text-center align-middle">{{ $item['nip'] }}</td>
+                                        <td class="align-middle">{{ $item['nama'] }}</td>
+                                        <td class="text-center align-middle">{{ $item['tanggal_pengajuan'] }}</td>
+                                        <td class="align-middle">{{ $item['tujuan'] }}</td>
+                                        <td class="text-center align-middle">
                                             @if (is_null($item['status']))
                                                 <span class="badge text-bg-info">Pengajuan Baru</span>
                                             @elseif ($item['status'] == \App\Enums\Pengajuan\PengajuanStatus::DITOLAK)
@@ -53,18 +53,18 @@
                                                 <span class="badge text-bg-success">Disetujui</span>
                                             @endif
                                         </td>
-                                        <td class="td-fit">
+                                        <td class="td-fit align-middle">
                                             <div class="d-flex gap-1">
-                                                <a href="/{{ auth()->user()->status->route() }}/pengajuan-cuti/{{ $item['id'] }}"
+                                                <a href="/{{ auth()->user()->status->route() }}/pengajuan-spdp/{{ $item['id'] }}"
                                                     class="btn btn-sm btn-info">
                                                     Detail
                                                 </a>
-                                                <a href="/{{ auth()->user()->status->route() }}/pengajuan-cuti/{{ $item['id'] }}/edit"
+                                                <a href="/{{ auth()->user()->status->route() }}/pengajuan-spdp/{{ $item['id'] }}/edit"
                                                     class="btn btn-sm btn-warning">
                                                     Edit
                                                 </a>
                                                 <form
-                                                    action="/{{ auth()->user()->status->route() }}/pengajuan-cuti/{{ $item['id'] }}"
+                                                    action="/{{ auth()->user()->status->route() }}/pengajuan-spdp/{{ $item['id'] }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
