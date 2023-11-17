@@ -7,10 +7,10 @@ use App\Http\Controllers\Master\JenisCutiController;
 use App\Http\Controllers\Master\JenisKendaraanController;
 use App\Http\Controllers\Master\RumahIbadahController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\Pengajuan\PengajuanCutiController;
 use App\Http\Controllers\Permohonan\PermohonanController;
 use App\Http\Controllers\Permohonan\PermohonanMagangPKLController;
 use App\Http\Controllers\UploadFileController;
-use App\Models\Permohonan\JenisPermohonan\PermohonanMagangPKL;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,10 +44,26 @@ Route::middleware('auth')->group(function () {
             Route::post('/permohonan-magang-pkl/{permohonan}/tolak', 'tolak');
             Route::post('/permohonan-magang-pkl/{permohonan}/terima', 'terima');
         });
+
+        Route::resource('/pengajuan-cuti', PengajuanCutiController::class)
+            ->parameters([
+                'pengajuan-cuti' => 'pengajuan'
+            ])->except('create');
+        Route::controller(PengajuanCutiController::class)
+            ->prefix('/pengajuan-cuti')
+            ->group(function () {
+                Route::post('/{pengajuan}/tolak', 'tolak');
+                Route::post('/{pengajuan}/terima', 'terima');
+            });
     });
 
     Route::prefix(UserStatus::PEGAWAI->route())->group(function () {
         Route::get('/', [DashboardController::class, 'pegawai']);
+
+        Route::resource('/pengajuan-cuti', PengajuanCutiController::class)
+            ->parameters([
+                'pengajuan-cuti' => 'pengajuan'
+            ]);
     });
 
     Route::prefix(UserStatus::PIMPINAN->route())->group(function () {
@@ -58,6 +74,17 @@ Route::middleware('auth')->group(function () {
             Route::post('/permohonan-magang-pkl/{permohonan}/tolak', 'tolak');
             Route::post('/permohonan-magang-pkl/{permohonan}/terima', 'terima');
         });
+
+        Route::resource('/pengajuan-cuti', PengajuanCutiController::class)
+            ->parameters([
+                'pengajuan-cuti' => 'pengajuan'
+            ]);
+        Route::controller(PengajuanCutiController::class)
+            ->prefix('/pengajuan-cuti')
+            ->group(function () {
+                Route::post('/{pengajuan}/tolak', 'tolak');
+                Route::post('/{pengajuan}/terima', 'terima');
+            });
     });
 });
 

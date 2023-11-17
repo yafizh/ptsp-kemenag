@@ -79,8 +79,8 @@
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
-                        'active' => request()->segment(2) == 'surat-cuti',
-                    ]) href="/{{ auth()->user()->status->route() }}/1"
+                        'active' => request()->segment(2) == 'pengajuan-cuti',
+                    ]) href="/{{ auth()->user()->status->route() }}/pengajuan-cuti"
                         aria-expanded="false">
                         <span>
                             <i class="ti ti-article"></i>
