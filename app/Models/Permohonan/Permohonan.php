@@ -3,6 +3,7 @@
 namespace App\Models\Permohonan;
 
 use App\Models\Permohonan\JenisPermohonan\PermohonanMagangPKL;
+use App\Models\Permohonan\JenisPermohonan\PermohonanUkurKiblat;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,12 +14,12 @@ class Permohonan extends Model
     protected $table = "permohonan";
 
     protected $fillable = [
-        'tanggal_permohonan'
+        'tanggal_waktu_permohonan'
     ];
 
     public function tanggalPermohonanFormatIndonesia(): string
     {
-        $tanggalPermohonan = Carbon::createFromDate($this->tanggal_permohonan)->locale('ID');
+        $tanggalPermohonan = Carbon::createFromDate($this->tanggal_waktu_permohonan)->locale('ID');
         return $tanggalPermohonan->day . " " . $tanggalPermohonan->getTranslatedMonthName() . " " . $tanggalPermohonan->year;
     }
 
@@ -35,5 +36,10 @@ class Permohonan extends Model
     public function magangPKL(): HasOne
     {
         return $this->HasOne(PermohonanMagangPKL::class, 'id_permohonan', 'id');
+    }
+
+    public function ukurKiblat(): HasOne
+    {
+        return $this->HasOne(PermohonanUkurKiblat::class, 'id_permohonan', 'id');
     }
 }

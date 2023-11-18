@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Permohonan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Permohonan\JenisPermohonan\PermohonanMagangPKL;
+use App\Models\Permohonan\JenisPermohonan\PermohonanUkurKiblat;
 use App\Models\Permohonan\Pemohon;
 use App\Models\Permohonan\Permohonan;
 use Carbon\Carbon;
@@ -61,6 +62,42 @@ class PermohonanController extends Controller
     public function pengukuranKiblat()
     {
         return view('permohonan.pengukuran-kiblat');
+    }
+
+    public function storePengukuranKiblat(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nama_pemohon'                  => 'required',
+            'nomor_telepon_pemohon'         => 'required',
+            'nama_ketua'                    => 'required',
+            'nomor_telepon_ketua'           => 'required',
+            'alamat_rumah_ibadah'           => 'required',
+            'nama_rumah_ibadah'             => 'required',
+            'nomor_telepon_rumah_ibadah'    => 'required'
+        ]);
+
+        DB::transaction(function () use ($validatedData) {
+            $permohonan = Permohonan::create([
+                'tanggal_waktu_permohonan' => Carbon::now('Asia/Kuala_Lumpur')->format("Y-m-d H:i:s")
+            ]);
+
+            PermohonanUkurKiblat::create([
+                'id_permohonan'              => $permohonan->id,
+                'nama_ketua'                 => $validatedData['nama_ketua'],
+                'nomor_telepon_ketua'        => $validatedData['nomor_telepon_ketua'],
+                'nama_rumah_ibadah'          => $validatedData['nama_rumah_ibadah'],
+                'alamat_rumah_ibadah'        => $validatedData['alamat_rumah_ibadah'],
+                'nomor_telepon_rumah_ibadah' => $validatedData['nomor_telepon_rumah_ibadah']
+            ]);
+
+            Pemohon::create([
+                'id_permohonan' => $permohonan->id,
+                'nama'          => $validatedData['nama_pemohon'],
+                'nomor_telepon' => $validatedData['nomor_telepon_pemohon']
+            ]);
+        });
+
+        return redirect('/permohonan-pengukuran-kiblat')->with('success', 'Berhasil mengajukan permohonan pengukuran kiblat.');
     }
 
     public function pendaftaranRumahIbadah()

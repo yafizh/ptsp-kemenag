@@ -135,9 +135,9 @@
                     <li class="sidebar-item">
                         <a @class([
                             'sidebar-link',
-                            'active' => request()->segment(2) == 'surat-ukur-kibtal',
-                        ]) href="/{{ auth()->user()->status->route() }}/surat-ukur-kiblat"
-                            aria-expanded="false">
+                            'active' => request()->segment(2) == 'permohonan-ukur-kiblat',
+                        ])
+                            href="/{{ auth()->user()->status->route() }}/permohonan-ukur-kiblat" aria-expanded="false">
                             <span>
                                 <i class="ti ti-article"></i>
                             </span>
@@ -167,7 +167,11 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a @class(['sidebar-link','text-wrap', 'active' => request()->segment(2) == '1']) href="/{{ auth()->user()->status->route() }}/1"
+                        <a @class([
+                            'sidebar-link',
+                            'text-wrap',
+                            'active' => request()->segment(2) == '1',
+                        ]) href="/{{ auth()->user()->status->route() }}/1"
                             aria-expanded="false">
                             <span>
                                 <i class="ti ti-article"></i>
@@ -176,7 +180,11 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a @class(['sidebar-link','text-wrap', 'active' => request()->segment(2) == '1']) href="/{{ auth()->user()->status->route() }}/1"
+                        <a @class([
+                            'sidebar-link',
+                            'text-wrap',
+                            'active' => request()->segment(2) == '1',
+                        ]) href="/{{ auth()->user()->status->route() }}/1"
                             aria-expanded="false">
                             <span>
                                 <i class="ti ti-article"></i>
@@ -185,7 +193,11 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a @class(['sidebar-link','text-wrap', 'active' => request()->segment(2) == '1']) href="/{{ auth()->user()->status->route() }}/1"
+                        <a @class([
+                            'sidebar-link',
+                            'text-wrap',
+                            'active' => request()->segment(2) == '1',
+                        ]) href="/{{ auth()->user()->status->route() }}/1"
                             aria-expanded="false">
                             <span>
                                 <i class="ti ti-article"></i>

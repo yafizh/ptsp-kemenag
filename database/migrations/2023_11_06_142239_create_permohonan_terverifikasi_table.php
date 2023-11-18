@@ -14,7 +14,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_permohonan');
             $table->foreignId('id_pengguna');
-            $table->date('tanggal_verifikasi');
+            $table->dateTime('tanggal_waktu_verifikasi');
             $table->text('keterangan')->nullable();
             $table->enum('status', array_column(PermohonanStatus::cases(), 'value'));
             $table->timestamps();

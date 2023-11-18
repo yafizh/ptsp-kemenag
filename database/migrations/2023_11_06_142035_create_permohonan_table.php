@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create((new Permohonan)->getTable(), function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal_permohonan');
+            $table->dateTime('tanggal_waktu_permohonan');
             $table->timestamps();
         });
     }

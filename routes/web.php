@@ -11,6 +11,7 @@ use App\Http\Controllers\Pengajuan\PengajuanCutiController;
 use App\Http\Controllers\Pengajuan\PengajuanSPDPController;
 use App\Http\Controllers\Permohonan\PermohonanController;
 use App\Http\Controllers\Permohonan\PermohonanMagangPKLController;
+use App\Http\Controllers\Permohonan\PermohonanUkurKiblatController;
 use App\Http\Controllers\UploadFileController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,8 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::middleware('auth')->group(function () {
     Route::post('uploads/process', [UploadFileController::class, 'process']);
 
+
+
     Route::prefix(UserStatus::ADMIN->route())->group(function () {
         Route::get('/', [DashboardController::class, 'admin']);
         Route::resource('pegawai', PegawaiController::class);
@@ -44,6 +47,13 @@ Route::middleware('auth')->group(function () {
             Route::get('/permohonan-magang-pkl/{permohonan}', 'show');
             Route::post('/permohonan-magang-pkl/{permohonan}/tolak', 'tolak');
             Route::post('/permohonan-magang-pkl/{permohonan}/terima', 'terima');
+        });
+
+        Route::controller(PermohonanUkurKiblatController::class)->group(function () {
+            Route::get('/permohonan-ukur-kiblat', 'index');
+            Route::get('/permohonan-ukur-kiblat/{permohonan}', 'show');
+            Route::post('/permohonan-ukur-kiblat/{permohonan}/tolak', 'tolak');
+            Route::post('/permohonan-ukur-kiblat/{permohonan}/terima', 'terima');
         });
 
         Route::resource('/pengajuan-cuti', PengajuanCutiController::class)
@@ -86,6 +96,13 @@ Route::middleware('auth')->group(function () {
             Route::post('/permohonan-magang-pkl/{permohonan}/terima', 'terima');
         });
 
+        Route::controller(PermohonanUkurKiblatController::class)->group(function () {
+            Route::get('/permohonan-ukur-kiblat', 'index');
+            Route::get('/permohonan-ukur-kiblat/{permohonan}', 'show');
+            Route::post('/permohonan-ukur-kiblat/{permohonan}/tolak', 'tolak');
+            Route::post('/permohonan-ukur-kiblat/{permohonan}/terima', 'terima');
+        });
+
         Route::resource('/pengajuan-cuti', PengajuanCutiController::class)
             ->parameters(['pengajuan-cuti' => 'pengajuan']);
         Route::controller(PengajuanCutiController::class)
@@ -112,5 +129,6 @@ Route::controller(PermohonanController::class)
         Route::get('/permohonan-magang-pkl', 'magangPKL');
         Route::post('/permohonan-magang-pkl', 'storeMagangPKL');
         Route::get('/permohonan-pengukuran-kiblat', 'pengukuranKiblat');
+        Route::post('/permohonan-pengukuran-kiblat', 'storePengukuranKiblat');
         Route::get('/permohonan-pendaftaran-rumah-ibadah', 'pendaftaranRumahIbadah');
     });

@@ -14,6 +14,11 @@
     <div class="row mb-3">
         <div class="card border-0 shadow">
             <div class="card-body">
+                @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }} Tunggu informasi terbaru yang akan diberikan melalui pesan whatsapp.
+                    </div>
+                @endif
                 <form action="" method="POST">
                     @csrf
                     <div class="mb-3">
@@ -51,14 +56,14 @@
                         <div class="col-12 col-md-6">
                             <div class="mb-3">
                                 <label for="nama_rumah_ibadah" class="form-label">
-                                    Nama Rumah Mesjid/Mushola
+                                    Nama Mesjid/Mushola
                                 </label>
                                 <input type="text" class="form-control" id="nama_rumah_ibadah" name="nama_rumah_ibadah"
                                     required>
                             </div>
                             <div class="mb-3">
                                 <label for="nomor_telepon_rumah_ibadah" class="form-label">
-                                    Nomor Telepon Rumah Mesjid/Mushola
+                                    Nomor Telepon Mesjid/Mushola
                                 </label>
                                 <input type="text" class="form-control" id="nomor_telepon_rumah_ibadah"
                                     name="nomor_telepon_rumah_ibadah" required>
@@ -73,4 +78,17 @@
             </div>
         </div>
     </div>
+    <script>
+        document
+            .getElementById('nomor_telepon_pemohon')
+            .addEventListener('keydown', phoneNumberFormat);
+
+        document
+            .getElementById('nomor_telepon_ketua')
+            .addEventListener('keydown', phoneNumberFormat);
+
+        document
+            .getElementById('nomor_telepon_rumah_ibadah')
+            .addEventListener('keydown', phoneNumberFormat);
+    </script>
 @endsection

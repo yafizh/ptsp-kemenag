@@ -29,8 +29,8 @@
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="nip" class="form-label">NIP</label>
-                                        <input type="text" class="form-control" id="nip" name="nip"
-                                            value="{{ old('nip') }}" required>
+                                        <input type="number" min="0" class="form-control" id="nip"
+                                            name="nip" value="{{ old('nip') }}" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -69,7 +69,7 @@
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="nomor_telepon" class="form-label">Nomor Telepon</label>
-                                        <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon"
+                                        <input type="number" class="form-control" id="nomor_telepon" name="nomor_telepon"
                                             value="{{ old('nomor_telepon') }}" required>
                                     </div>
                                 </div>
@@ -155,5 +155,10 @@
             },
             // allowMultiple: true,
         });
+    </script>
+    <script>
+        document
+            .getElementById('nomor_telepon')
+            .addEventListener('keydown', phoneNumberFormat);
     </script>
 @endsection

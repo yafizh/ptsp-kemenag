@@ -31,8 +31,8 @@
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="nip" class="form-label">NIP</label>
-                                        <input type="text" class="form-control" id="nip" name="nip"
-                                            value="{{ old('nip', $pegawai->nip) }}" required>
+                                        <input type="number" min="0" class="form-control" id="nip"
+                                            name="nip" value="{{ old('nip', $pegawai->nip) }}" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -169,5 +169,10 @@
                 },
             },
         });
+    </script>
+    <script>
+        document
+            .getElementById('nomor_telepon')
+            .addEventListener('keydown', phoneNumberFormat);
     </script>
 @endsection
