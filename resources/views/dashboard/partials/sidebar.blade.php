@@ -110,6 +110,7 @@
                     <li class="sidebar-item">
                         <a @class([
                             'sidebar-link',
+                            'text-wrap',
                             'active' => request()->segment(2) == 'surat-izin-riset',
                         ]) href="/{{ auth()->user()->status->route() }}/surat-izin-riset"
                             aria-expanded="false">
@@ -123,8 +124,8 @@
                         <a @class([
                             'sidebar-link',
                             'active' => request()->segment(2) == 'surat-pkl-magang',
-                        ]) href="/{{ auth()->user()->status->route() }}/permohonan-magang-pkl"
-                            aria-expanded="false">
+                        ])
+                            href="/{{ auth()->user()->status->route() }}/permohonan-magang-pkl" aria-expanded="false">
                             <span>
                                 <i class="ti ti-article"></i>
                             </span>
@@ -141,6 +142,55 @@
                                 <i class="ti ti-article"></i>
                             </span>
                             <span class="hide-menu">Pengukuran Kiblat</span>
+                        </a>
+                    </li>
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">Laporan</span>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class(['sidebar-link', 'active' => request()->segment(2) == '1']) href="/{{ auth()->user()->status->route() }}/1"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Peganjuan Cuti</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class(['sidebar-link', 'active' => request()->segment(2) == '1']) href="/{{ auth()->user()->status->route() }}/1"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Peganjuan SPDP</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class(['sidebar-link','text-wrap', 'active' => request()->segment(2) == '1']) href="/{{ auth()->user()->status->route() }}/1"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Permohonan Pendaftaran Rumah Ibadah</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class(['sidebar-link','text-wrap', 'active' => request()->segment(2) == '1']) href="/{{ auth()->user()->status->route() }}/1"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Permohonan Magang/PKL</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class(['sidebar-link','text-wrap', 'active' => request()->segment(2) == '1']) href="/{{ auth()->user()->status->route() }}/1"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Permohonan Pengukuran Kiblat</span>
                         </a>
                     </li>
                 @endif
