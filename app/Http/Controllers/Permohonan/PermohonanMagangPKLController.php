@@ -16,7 +16,7 @@ class PermohonanMagangPKLController extends Controller
     {
         $permohonan = Permohonan::with(['pemohon', 'magangPKL', 'permohonanTerverifikasi'])
             ->whereHas('magangPKL')
-            ->orderBy('tanggal_permohonan', 'DESC')
+            ->orderBy('tanggal_waktu_permohonan', 'DESC')
             ->get()
             ->map(function ($item) {
                 return [

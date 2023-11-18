@@ -37,7 +37,7 @@ class PermohonanController extends Controller
 
         DB::transaction(function () use ($validatedData) {
             $permohonan = Permohonan::create([
-                'tanggal_permohonan' => Carbon::now('Asia/Kuala_Lumpur')->format("Y-m-d")
+                'tanggal_waktu_permohonan' => Carbon::now('Asia/Kuala_Lumpur')->format("Y-m-d H:i:s")
             ]);
 
             PermohonanMagangPKL::create([

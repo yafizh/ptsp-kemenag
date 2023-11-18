@@ -70,4 +70,9 @@
             </div>
         </div>
     </div>
+    <script>
+        document
+            .getElementById('nomor_telepon_pemohon')
+            .addEventListener('keydown', phoneNumberFormat);
+    </script>
 @endsection

@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
-    <link rel="shortcut icon" type="image/png" href="/assets/images/logos/favicon.png" />
+    <title>Dashboard</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/logos/kemenag.png">
     <link rel="stylesheet" href="/assets/css/styles.min.css" />
     <link href="https://cdn.datatables.net/v/bs5/dt-1.13.7/r-2.5.0/datatables.min.css" rel="stylesheet">
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
