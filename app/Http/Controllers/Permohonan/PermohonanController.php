@@ -3,13 +3,20 @@
 namespace App\Http\Controllers\Permohonan;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\RumahIbadah;
 use App\Models\Permohonan\JenisPermohonan\PermohonanMagangPKL;
+use App\Models\Permohonan\JenisPermohonan\PermohonanPendaftaranRumahIbadah;
+use App\Models\Permohonan\JenisPermohonan\PermohonanPendaftaranRumahIbadahGambar;
 use App\Models\Permohonan\JenisPermohonan\PermohonanUkurKiblat;
 use App\Models\Permohonan\Pemohon;
 use App\Models\Permohonan\Permohonan;
+use App\Models\UploadFile;
 use Carbon\Carbon;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PermohonanController extends Controller
 {
@@ -102,6 +109,75 @@ class PermohonanController extends Controller
 
     public function pendaftaranRumahIbadah()
     {
-        return view('permohonan.pendaftaran-rumah-ibadah');
+        $rumahIbadah = RumahIbadah::orderBy('nama')->get();
+        return view('permohonan.pendaftaran-rumah-ibadah', compact('rumahIbadah'));
+    }
+
+    public function storePendaftaranRumahIbadah(Request $request)
+    {
+        $validatedData = $request->validate([
+            'rumah_ibadah'                  => 'required',
+            'nama_pemohon'                  => 'required',
+            'nomor_telepon_pemohon'         => 'required',
+            'nama_ketua'                    => 'required',
+            'nomor_telepon_ketua'           => 'required',
+            'tahun_berdiri'                 => 'required',
+            'nama_rumah_ibadah'             => 'required',
+            'nomor_telepon_rumah_ibadah'    => 'required',
+            'alamat_rumah_ibadah'           => 'required',
+            'kecamatan'                     => 'required',
+            'kelurahan'                     => 'required',
+            'luas_tanah'                    => 'required',
+            'luas_bangunan'                 => 'required',
+            'nomor_telepon_rumah_ibadah'    => 'required',
+            'foto'                          => 'required'
+        ]);
+
+        DB::transaction(function () use ($validatedData) {
+            $permohonan = Permohonan::create([
+                'tanggal_waktu_permohonan' => Carbon::now('Asia/Kuala_Lumpur')->format("Y-m-d H:i:s")
+            ]);
+
+
+            $permohonanPendaftaranRumahIbadah = PermohonanPendaftaranRumahIbadah::create([
+                'id_permohonan'                 => $permohonan->id,
+                'id_rumah_ibadah'               => $validatedData['rumah_ibadah'],
+                'nama_ketua'                    => $validatedData['nama_ketua'],
+                'nomor_telepon_ketua'           => $validatedData['nomor_telepon_ketua'],
+                'nama_rumah_ibadah'             => $validatedData['nama_rumah_ibadah'],
+                'nomor_telepon_rumah_ibadah'    => $validatedData['nomor_telepon_ketua'],
+                'alamat_rumah_ibadah'           => $validatedData['alamat_rumah_ibadah'],
+                'tahun_berdiri'                 => $validatedData['tahun_berdiri'],
+                'kecamatan'                     => $validatedData['kecamatan'],
+                'kelurahan'                     => $validatedData['kelurahan'],
+                'luas_tanah'                    => $validatedData['luas_tanah'],
+                'luas_bangunan'                 => $validatedData['luas_bangunan'],
+            ]);
+
+            foreach ($validatedData['foto'] as $foto) {
+                $uploadFile = UploadFile::where('nama_file', $foto)->first();
+                $file = new File(Storage::path($foto));
+                $newFilename = now()->timestamp . '-' . Str::random(20) . '.' . $file->getExtension();
+                Storage::putFileAs(
+                    'public/permohonan-rumah-ibadah',
+                    $file,
+                    $newFilename
+                );
+                PermohonanPendaftaranRumahIbadahGambar::create([
+                    'id_permohonan_pendaftaran_rumah_ibadah' => $permohonanPendaftaranRumahIbadah->id,
+                    'nama_file'      => 'permohonan-rumah-ibadah/' . $newFilename,
+                    'nama_file_asli' => $uploadFile->nama_file_asli
+                ]);
+                $uploadFile->delete();
+            }
+
+            Pemohon::create([
+                'id_permohonan' => $permohonan->id,
+                'nama'          => $validatedData['nama_pemohon'],
+                'nomor_telepon' => $validatedData['nomor_telepon_pemohon']
+            ]);
+        });
+
+        return redirect('/permohonan-pendaftaran-rumah-ibadah')->with('success', 'Berhasil mengajukan permohonan pendaftaran rumah ibadah.');
     }
 }

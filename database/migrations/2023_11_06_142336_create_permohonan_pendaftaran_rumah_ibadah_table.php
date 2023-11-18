@@ -14,9 +14,10 @@ return new class extends Migration
             $table->foreignId('id_permohonan');
             $table->foreignId('id_rumah_ibadah');
             $table->string('nama_ketua');
-            $table->string('nomor_handphone_ketua');
+            $table->string('nomor_telepon_ketua');
             $table->string('nama_rumah_ibadah');
-            $table->string('alamat');
+            $table->string('alamat_rumah_ibadah');
+            $table->string('nomor_telepon_rumah_ibadah');
             $table->string('kelurahan');
             $table->string('kecamatan');
             $table->unsignedSmallInteger('tahun_berdiri');

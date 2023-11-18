@@ -111,8 +111,9 @@
                         <a @class([
                             'sidebar-link',
                             'text-wrap',
-                            'active' => request()->segment(2) == 'surat-izin-riset',
-                        ]) href="/{{ auth()->user()->status->route() }}/surat-izin-riset"
+                            'active' => request()->segment(2) == 'permohonan-pendaftaran-rumah-ibadah',
+                        ])
+                            href="/{{ auth()->user()->status->route() }}/permohonan-pendaftaran-rumah-ibadah"
                             aria-expanded="false">
                             <span>
                                 <i class="ti ti-article"></i>

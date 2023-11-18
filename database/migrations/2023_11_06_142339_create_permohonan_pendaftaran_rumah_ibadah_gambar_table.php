@@ -14,7 +14,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_permohonan_pendaftaran_rumah_ibadah');
             $table->string('nama_file');
-            $table->string('nama_file_original');
+            $table->string('nama_file_asli');
             $table->timestamps();
         });
     }

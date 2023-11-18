@@ -11,6 +11,6 @@ class PermohonanPendaftaranRumahIbadahGambar extends Model
     protected $fillable = [
         'id_permohonan_pendaftaran_rumah_ibadah',
         'nama_file',
-        'nama_file_original'
+        'nama_file_asli'
     ];
 }

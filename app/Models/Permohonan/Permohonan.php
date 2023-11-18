@@ -3,6 +3,7 @@
 namespace App\Models\Permohonan;
 
 use App\Models\Permohonan\JenisPermohonan\PermohonanMagangPKL;
+use App\Models\Permohonan\JenisPermohonan\PermohonanPendaftaranRumahIbadah;
 use App\Models\Permohonan\JenisPermohonan\PermohonanUkurKiblat;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -35,11 +36,16 @@ class Permohonan extends Model
 
     public function magangPKL(): HasOne
     {
-        return $this->HasOne(PermohonanMagangPKL::class, 'id_permohonan', 'id');
+        return $this->hasOne(PermohonanMagangPKL::class, 'id_permohonan', 'id');
     }
 
     public function ukurKiblat(): HasOne
     {
-        return $this->HasOne(PermohonanUkurKiblat::class, 'id_permohonan', 'id');
+        return $this->hasOne(PermohonanUkurKiblat::class, 'id_permohonan', 'id');
+    }
+
+    public function pendaftaranRumahIbadah(): HasOne
+    {
+        return $this->hasOne(PermohonanPendaftaranRumahIbadah::class, 'id_permohonan', 'id');
     }
 }
