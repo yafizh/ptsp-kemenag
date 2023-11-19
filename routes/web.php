@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
             ->prefix('/permohonan-magang-pkl')
             ->group(function () {
                 Route::get('/', 'index');
+                Route::get('/laporan', 'laporan');
+                Route::get('/print', 'print');
                 Route::get('/{permohonan}', 'show');
                 Route::post('/{permohonan}/tolak', 'tolak');
                 Route::post('/{permohonan}/terima', 'terima');
@@ -52,6 +54,9 @@ Route::middleware('auth')->group(function () {
             ->prefix('/permohonan-ukur-kiblat')
             ->group(function () {
                 Route::get('/', 'index');
+                Route::get('/laporan', 'laporan');
+                Route::post('/laporan', 'laporan');
+                Route::post('/print', 'print');
                 Route::get('/{permohonan}', 'show');
                 Route::post('/{permohonan}/tolak', 'tolak');
                 Route::post('/{permohonan}/terima', 'terima');
@@ -113,6 +118,9 @@ Route::middleware('auth')->group(function () {
             ->prefix('/permohonan-ukur-kiblat')
             ->group(function () {
                 Route::get('/', 'index');
+                Route::get('/laporan', 'laporan');
+                Route::post('/laporan', 'laporan');
+                Route::post('/print', 'print');
                 Route::get('/{permohonan}', 'show');
                 Route::post('/{permohonan}/tolak', 'tolak');
                 Route::post('/{permohonan}/terima', 'terima');

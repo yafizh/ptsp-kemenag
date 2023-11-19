@@ -69,7 +69,7 @@
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="nomor_telepon" class="form-label">Nomor Telepon</label>
-                                        <input type="number" class="form-control" id="nomor_telepon" name="nomor_telepon"
+                                        <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon"
                                             value="{{ old('nomor_telepon') }}" required>
                                     </div>
                                 </div>
