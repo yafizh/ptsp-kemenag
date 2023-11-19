@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Permohonan;
 
 use App\Enums\Permohonan\PermohonanStatus;
 use App\Http\Controllers\Controller;
+use App\Models\Master\RumahIbadah;
 use App\Models\Permohonan\Permohonan;
 use App\Models\Permohonan\PermohonanTerverifikasi;
 use Carbon\Carbon;
@@ -89,5 +90,71 @@ class PermohonanPendaftaranRumahIbadahController extends Controller
         ]);
 
         return redirect('/' . auth()->user()->status->route() . '/permohonan-pendaftaran-rumah-ibadah/' . $permohonan->id)->with('success', 'Berhasil menolak permohonan.');
+    }
+
+    public function laporan(Request $request)
+    {
+        $rumahIbadah = RumahIbadah::orderBy('nama')->get();
+        $today = Carbon::now('Asia/Kuala_Lumpur')->locale('ID');
+        $filter = [
+            'today' => $today->day . ' ' . $today->getTranslatedMonthName() . ' ' . $today->year
+        ];
+
+        $permohonan = Permohonan::with([
+            'pemohon',
+            'pendaftaranRumahIbadah.rumahIbadah',
+            'permohonanTerverifikasi'
+        ])
+            ->whereHas('pendaftaranRumahIbadah')
+            ->orderBy('tanggal_waktu_permohonan', 'DESC');
+
+        if ($request->get('dari_tanggal') && $request->get('sampai_tanggal')) {
+            $permohonan = $permohonan
+                ->whereBetween('tanggal_waktu_permohonan', [
+                    $request->get('dari_tanggal'),
+                    $request->get('sampai_tanggal')
+                ]);
+
+
+            $dariTanggal = Carbon::createFromDate($request->get('dari_tanggal'))->locale('ID');
+            $sampaiTanggal = Carbon::createFromDate($request->get('sampai_tanggal'))->locale('ID');
+            $filter['dari_tanggal']    = $dariTanggal->day . ' ' . $dariTanggal->getTranslatedMonthName() . ' ' . $dariTanggal->year;
+            $filter['sampai_tanggal']  = $sampaiTanggal->day . ' ' . $sampaiTanggal->getTranslatedMonthName() . ' ' . $sampaiTanggal->year;
+        }
+
+        if ($request->get('rumah_ibadah')) {
+            $permohonan = $permohonan->whereHas('pendaftaranRumahIbadah', function ($query) use ($request) {
+                $query->where('id_rumah_ibadah', $request->get('rumah_ibadah'));
+            });
+        }
+
+        if ($request->get('status')) {
+            $filter['status'] = $request->get('status');
+            if ($request->get('status') == 'Permohonan Baru') {
+                $permohonan = $permohonan->doesntHave('permohonanTerverifikasi');
+            } else {
+                $permohonan = $permohonan->whereHas('permohonanTerverifikasi', function ($query) use ($request) {
+                    $query->where('status', $request->get('status'));
+                });
+            }
+        }
+
+        $permohonan = $permohonan->get()
+            ->map(function ($item) {
+                return [
+                    'tanggal_permohonan' => $item->tanggalPermohonanFormatIndonesia(),
+                    'nama'               => $item->pemohon->nama,
+                    'nomor_telepon'      => $item->pemohon->nomor_telepon,
+                    'nama_rumah_ibadah'  => $item->pendaftaranRumahIbadah->nama_rumah_ibadah,
+                    'rumah_ibadah'       => $item->pendaftaranRumahIbadah->rumahIbadah->nama,
+                    'tahun_berdiri'      => $item->pendaftaranRumahIbadah->tahun_berdiri,
+                    'status'             => is_null($item->permohonanTerverifikasi) ? null : $item->permohonanTerverifikasi->status
+                ];
+            });
+
+        if ($request->get('print'))
+            return view('dashboard.permohonan.pendaftaran-rumah-ibadah.cetak', compact('permohonan', 'filter'));
+
+        return view('dashboard.permohonan.pendaftaran-rumah-ibadah.laporan', compact('permohonan', 'filter', 'rumahIbadah'));
     }
 }

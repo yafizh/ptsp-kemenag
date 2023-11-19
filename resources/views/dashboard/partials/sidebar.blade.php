@@ -111,7 +111,9 @@
                         <a @class([
                             'sidebar-link',
                             'text-wrap',
-                            'active' => request()->segment(2) == 'permohonan-pendaftaran-rumah-ibadah',
+                            'active' =>
+                                request()->segment(2) == 'permohonan-pendaftaran-rumah-ibadah' &&
+                                request()->segment(3) == '',
                         ])
                             href="/{{ auth()->user()->status->route() }}/permohonan-pendaftaran-rumah-ibadah"
                             aria-expanded="false">
@@ -124,7 +126,9 @@
                     <li class="sidebar-item">
                         <a @class([
                             'sidebar-link',
-                            'active' => request()->segment(2) == 'surat-pkl-magang',
+                            'active' =>
+                                request()->segment(2) == 'surat-pkl-magang' &&
+                                request()->segment(3) == '',
                         ])
                             href="/{{ auth()->user()->status->route() }}/permohonan-magang-pkl" aria-expanded="false">
                             <span>
@@ -136,7 +140,9 @@
                     <li class="sidebar-item">
                         <a @class([
                             'sidebar-link',
-                            'active' => request()->segment(2) == 'permohonan-ukur-kiblat',
+                            'active' =>
+                                request()->segment(2) == 'permohonan-ukur-kiblat' &&
+                                request()->segment(3) == '',
                         ])
                             href="/{{ auth()->user()->status->route() }}/permohonan-ukur-kiblat" aria-expanded="false">
                             <span>
@@ -171,8 +177,11 @@
                         <a @class([
                             'sidebar-link',
                             'text-wrap',
-                            'active' => request()->segment(2) == '1',
-                        ]) href="/{{ auth()->user()->status->route() }}/1"
+                            'active' =>
+                                request()->segment(2) == 'permohonan-pendaftaran-rumah-ibadah' &&
+                                request()->segment(3) == 'laporan',
+                        ])
+                            href="/{{ auth()->user()->status->route() }}/permohonan-pendaftaran-rumah-ibadah/laporan"
                             aria-expanded="false">
                             <span>
                                 <i class="ti ti-report"></i>
