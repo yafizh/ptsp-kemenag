@@ -83,4 +83,58 @@ class PermohonanMagangPKLController extends Controller
 
         return redirect('/' . auth()->user()->status->route() . '/permohonan-magang-pkl/' . $permohonan->id)->with('success', 'Berhasil menolak permohonan.');
     }
+
+    public function laporan(Request $request)
+    {
+        $today = Carbon::now('Asia/Kuala_Lumpur')->locale('ID');
+        $filter = [
+            'today' => $today->day . ' ' . $today->getTranslatedMonthName() . ' ' . $today->year
+        ];
+
+        $permohonan = Permohonan::with(['pemohon', 'magangPKL', 'permohonanTerverifikasi'])
+            ->whereHas('magangPKL')
+            ->orderBy('tanggal_waktu_permohonan', 'DESC');
+
+        if ($request->get('dari_tanggal') && $request->get('sampai_tanggal')) {
+            $permohonan = $permohonan
+                ->whereBetween('tanggal_waktu_permohonan', [
+                    $request->get('dari_tanggal'),
+                    $request->get('sampai_tanggal')
+                ]);
+
+
+            $dariTanggal = Carbon::createFromDate($request->get('dari_tanggal'))->locale('ID');
+            $sampaiTanggal = Carbon::createFromDate($request->get('sampai_tanggal'))->locale('ID');
+            $filter['dari_tanggal']    = $dariTanggal->day . ' ' . $dariTanggal->getTranslatedMonthName() . ' ' . $dariTanggal->year;
+            $filter['sampai_tanggal']  = $sampaiTanggal->day . ' ' . $sampaiTanggal->getTranslatedMonthName() . ' ' . $sampaiTanggal->year;
+        }
+
+        if ($request->get('status')) {
+            $filter['status'] = $request->get('status');
+            if ($request->get('status') == 'Permohonan Baru') {
+                $permohonan = $permohonan->doesntHave('permohonanTerverifikasi');
+            } else {
+                $permohonan = $permohonan->whereHas('permohonanTerverifikasi', function ($query) use ($request) {
+                    $query->where('status', $request->get('status'));
+                });
+            }
+        }
+
+        $permohonan = $permohonan->get()
+            ->map(function ($item) {
+                return [
+                    'tanggal_permohonan' => $item->tanggalPermohonanFormatIndonesia(),
+                    'nama'               => $item->pemohon->nama,
+                    'nomor_telepon'      => $item->pemohon->nomor_telepon,
+                    'nama_siswa'         => $item->magangPKL->nama,
+                    'asal_sekolah'       => $item->magangPKL->asal_sekolah,
+                    'status'             => is_null($item->permohonanTerverifikasi) ? null : $item->permohonanTerverifikasi->status
+                ];
+            });
+
+        if ($request->get('print'))
+            return view('dashboard.permohonan.magang-pkl.cetak', compact('permohonan', 'filter'));
+
+        return view('dashboard.permohonan.magang-pkl.laporan', compact('permohonan', 'filter'));
+    }
 }

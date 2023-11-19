@@ -1,13 +1,13 @@
 @extends('dashboard.layouts.cetak')
 
 @section('app-content')
-    <h4 class="text-center my-3">Laporan Permohonan Pengukuran Kiblat</h4>
+    <h4 class="text-center my-3">Laporan Permohonan Magang/PKL</h4>
     <section class="p-3">
         <strong>
             <span style="width: 150px; display: inline-block;">Filter</span>
         </strong>
         <br>
-        <span style="width: 150px; display: inline-block;">Tanggal</span>
+        <span style="width: 150px; display: inline-block;">Tanggal Permohonan</span>
         @if (isset($filter['dari_tanggal']) && isset($filter['sampai_tanggal']))
             <span>: {{ $filter['dari_tanggal'] }} - {{ $filter['sampai_tanggal'] }}</span>
         @else
@@ -25,8 +25,8 @@
                     <th class="text-center align-middle">Tanggal Permohonan</th>
                     <th class="text-center align-middle">Nama Pemohon</th>
                     <th class="text-center align-middle">Nomor Telepon Pemohon</th>
-                    <th class="text-center align-middle">Nama Penanggung Jawab</th>
-                    <th class="text-center align-middle">Nomor Telepon Penanggung Jawab</th>
+                    <th class="text-center align-middle">Nama Siswa/Mahasiswa</th>
+                    <th class="text-center align-middle">Asal Sekolah/Universitas</th>
                     <th class="text-center align-middle">Status</th>
                 </tr>
             </thead>
@@ -38,8 +38,8 @@
                             <td class="align-middle text-center">{{ $item['tanggal_permohonan'] }}</td>
                             <td class="align-middle">{{ $item['nama'] }}</td>
                             <td class="align-middle text-center">{{ $item['nomor_telepon'] }}</td>
-                            <td class="align-middle">{{ $item['nama_ketua'] }}</td>
-                            <td class="align-middle text-center">{{ $item['nomor_telepon_ketua'] }}</td>
+                            <td class="align-middle">{{ $item['nama_siswa'] }}</td>
+                            <td class="align-middle">{{ $item['asal_sekolah'] }}</td>
                             <td class="align-middle text-center">
                                 @if (is_null($item['status']))
                                     Permohonan Baru

@@ -123,7 +123,7 @@ class PermohonanUkurKiblatController extends Controller
         $permohonan = $permohonan->get()
             ->map(function ($item) {
                 return [
-                    'id'                    => $item->id,
+                    'tanggal_permohonan'    => $item->tanggalPermohonanFormatIndonesia(),
                     'nama'                  => $item->pemohon->nama,
                     'nomor_telepon'         => $item->pemohon->nomor_telepon,
                     'nama_ketua'            => $item->ukurKiblat->nama_ketua,

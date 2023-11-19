@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col-12">
-                <h3>Laporan Permohonan Pengukuran Kiblat</h3>
+                <h3>Laporan Permohonan Magang/PKL</h3>
             </div>
         </div>
         <div class="row">
@@ -92,8 +92,8 @@
                                     <th class="text-center align-middle">Tanggal Permohonan</th>
                                     <th class="text-center align-middle">Nama Pemohon</th>
                                     <th class="text-center align-middle">Nomor Telepon Pemohon</th>
-                                    <th class="text-center align-middle">Nama Penanggung Jawab</th>
-                                    <th class="text-center align-middle">Nomor Telepon Penanggung Jawab</th>
+                                    <th class="text-center align-middle">Nama Siswa/Mahasiswa</th>
+                                    <th class="text-center align-middle">Asal Sekolah/Universitas</th>
                                     <th class="text-center align-middle">Status</th>
                                 </tr>
                             </thead>
@@ -104,8 +104,8 @@
                                         <td class="text-center align-middle">{{ $item['tanggal_permohonan'] }}</td>
                                         <td class="align-middle">{{ $item['nama'] }}</td>
                                         <td class="text-center align-middle">{{ $item['nomor_telepon'] }}</td>
-                                        <td class="align-middle">{{ $item['nama_ketua'] }}</td>
-                                        <td class="text-center align-middle">{{ $item['nomor_telepon_ketua'] }}</td>
+                                        <td class="align-middle">{{ $item['nama_siswa'] }}</td>
+                                        <td class="align-middle">{{ $item['asal_sekolah'] }}</td>
                                         <td class="text-center align-middle">
                                             @if (is_null($item['status']))
                                                 <span class="badge text-bg-info">Permohonan Baru</span>

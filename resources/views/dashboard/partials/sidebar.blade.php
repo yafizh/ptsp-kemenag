@@ -184,8 +184,11 @@
                         <a @class([
                             'sidebar-link',
                             'text-wrap',
-                            'active' => request()->segment(2) == '1',
-                        ]) href="/{{ auth()->user()->status->route() }}/1"
+                            'active' =>
+                                request()->segment(2) == 'permohonan-magang-pkl' &&
+                                request()->segment(3) == 'laporan',
+                        ])
+                            href="/{{ auth()->user()->status->route() }}/permohonan-magang-pkl/laporan"
                             aria-expanded="false">
                             <span>
                                 <i class="ti ti-report"></i>
