@@ -29,7 +29,7 @@ class JenisKendaraanController extends Controller
             'nama' => $validatedData['nama']
         ]);
 
-        return redirect('/' . auth()->user()->status->route() . '/jenis-kendaraan')->with('success', 'Berhasil menambah jenis kendaraan.');
+        return redirect('/' . auth()->user()->status->route() . '/jenis-kendaraan')->with('success', 'Berhasil menambah jenis transportasi.');
     }
 
     public function edit(JenisKendaraan $jenisKendaraan)
@@ -47,12 +47,12 @@ class JenisKendaraanController extends Controller
             'nama' => $validatedData['nama']
         ]);
 
-        return redirect('/' . auth()->user()->status->route() . '/jenis-kendaraan')->with('success', 'Berhasil memperbaharui jenis kendaraan.');
+        return redirect('/' . auth()->user()->status->route() . '/jenis-kendaraan')->with('success', 'Berhasil memperbaharui jenis transportasi.');
     }
 
     public function destroy(JenisKendaraan $jenisKendaraan)
     {
         $jenisKendaraan->delete();
-        return redirect('/' . auth()->user()->status->route() . '/jenis-kendaraan')->with('success', 'Berhasil menghapus jenis kendaraan.');
+        return redirect('/' . auth()->user()->status->route() . '/jenis-kendaraan')->with('success', 'Berhasil menghapus jenis transportasi.');
     }
 }

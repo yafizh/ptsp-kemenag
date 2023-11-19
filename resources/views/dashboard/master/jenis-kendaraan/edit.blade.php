@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col-12 col-md-6">
-                <h3>Edit Jenis Kendaraan</h3>
+                <h3>Edit Jenis Transportasi</h3>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
                 <a href="/{{ auth()->user()->status->route() }}/jenis-kendaraan" class="btn btn-secondary">Kembali</a>
@@ -28,7 +28,7 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
-                                <label for="nama" class="form-label">Jenis Kendaraan</label>
+                                <label for="nama" class="form-label">Jenis Transportasi</label>
                                 <input type="text" class="form-control" id="nama" name="nama"
                                     value="{{ old('nama', $jenisKendaraan->nama) }}" required>
                             </div>

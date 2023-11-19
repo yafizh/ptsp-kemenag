@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col-12 col-md-6">
-                <h3>Jenis Kendaraan</h3>
+                <h3>Jenis Transportasi</h3>
             </div>
             <div class="col-12 col-md-6 d-flex justify-content-end">
                 <a href="/{{ auth()->user()->status->route() }}/jenis-kendaraan/create" class="btn btn-primary">Tambah</a>

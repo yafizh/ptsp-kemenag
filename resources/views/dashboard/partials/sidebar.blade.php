@@ -68,7 +68,7 @@
                             <span>
                                 <i class="ti ti-motorbike"></i>
                             </span>
-                            <span class="hide-menu">Jenis Kendaraan</span>
+                            <span class="hide-menu">Jenis Transportasi</span>
                         </a>
                     </li>
                 @endif
