@@ -26,7 +26,7 @@
                         ]) href="/{{ auth()->user()->status->route() }}/pegawai"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-layout-dashboard"></i>
+                                <i class="ti ti-user"></i>
                             </span>
                             <span class="hide-menu">Pegawai</span>
                         </a>
@@ -42,7 +42,7 @@
                         ]) href="/{{ auth()->user()->status->route() }}/rumah-ibadah"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-layout-dashboard"></i>
+                                <i class="ti ti-building-church"></i>
                             </span>
                             <span class="hide-menu">Rumah Ibadah</span>
                         </a>
@@ -54,7 +54,7 @@
                         ]) href="/{{ auth()->user()->status->route() }}/jenis-cuti"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-layout-dashboard"></i>
+                                <i class="ti ti-clock-play"></i>
                             </span>
                             <span class="hide-menu">Jenis Cuti</span>
                         </a>
@@ -66,7 +66,7 @@
                         ]) href="/{{ auth()->user()->status->route() }}/jenis-kendaraan"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-layout-dashboard"></i>
+                                <i class="ti ti-motorbike"></i>
                             </span>
                             <span class="hide-menu">Jenis Kendaraan</span>
                         </a>
@@ -83,7 +83,7 @@
                     ]) href="/{{ auth()->user()->status->route() }}/pengajuan-cuti"
                         aria-expanded="false">
                         <span>
-                            <i class="ti ti-article"></i>
+                            <i class="ti ti-file-text"></i>
                         </span>
                         <span class="hide-menu">Cuti</span>
                     </a>
@@ -96,7 +96,7 @@
                     ]) href="/{{ auth()->user()->status->route() }}/pengajuan-spdp"
                         aria-expanded="false">
                         <span>
-                            <i class="ti ti-article"></i>
+                            <i class="ti ti-file-text"></i>
                         </span>
                         <span class="hide-menu">Surat Perintah Perjalanan Dinas (SPDP)</span>
                     </a>
@@ -116,7 +116,7 @@
                             href="/{{ auth()->user()->status->route() }}/permohonan-pendaftaran-rumah-ibadah"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-article"></i>
+                                <i class="ti ti-file-text"></i>
                             </span>
                             <span class="hide-menu">Pendaftaran Rumah Ibadah</span>
                         </a>
@@ -128,7 +128,7 @@
                         ])
                             href="/{{ auth()->user()->status->route() }}/permohonan-magang-pkl" aria-expanded="false">
                             <span>
-                                <i class="ti ti-article"></i>
+                                <i class="ti ti-file-text"></i>
                             </span>
                             <span class="hide-menu">PKL/Magang</span>
                         </a>
@@ -140,7 +140,7 @@
                         ])
                             href="/{{ auth()->user()->status->route() }}/permohonan-ukur-kiblat" aria-expanded="false">
                             <span>
-                                <i class="ti ti-article"></i>
+                                <i class="ti ti-file-text"></i>
                             </span>
                             <span class="hide-menu">Pengukuran Kiblat</span>
                         </a>
@@ -153,7 +153,7 @@
                         <a @class(['sidebar-link', 'active' => request()->segment(2) == '1']) href="/{{ auth()->user()->status->route() }}/1"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-article"></i>
+                                <i class="ti ti-report"></i>
                             </span>
                             <span class="hide-menu">Peganjuan Cuti</span>
                         </a>
@@ -162,7 +162,7 @@
                         <a @class(['sidebar-link', 'active' => request()->segment(2) == '1']) href="/{{ auth()->user()->status->route() }}/1"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-article"></i>
+                                <i class="ti ti-report"></i>
                             </span>
                             <span class="hide-menu">Peganjuan SPDP</span>
                         </a>
@@ -175,7 +175,7 @@
                         ]) href="/{{ auth()->user()->status->route() }}/1"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-article"></i>
+                                <i class="ti ti-report"></i>
                             </span>
                             <span class="hide-menu">Permohonan Pendaftaran Rumah Ibadah</span>
                         </a>
@@ -188,7 +188,7 @@
                         ]) href="/{{ auth()->user()->status->route() }}/1"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-article"></i>
+                                <i class="ti ti-report"></i>
                             </span>
                             <span class="hide-menu">Permohonan Magang/PKL</span>
                         </a>
@@ -201,7 +201,7 @@
                         ]) href="/{{ auth()->user()->status->route() }}/1"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-article"></i>
+                                <i class="ti ti-report"></i>
                             </span>
                             <span class="hide-menu">Permohonan Pengukuran Kiblat</span>
                         </a>

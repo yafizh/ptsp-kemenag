@@ -42,14 +42,14 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">Nama Ketua</label>
+                                    <label class="form-label">Nama Penanggung Jawab</label>
                                     <input type="text" class="form-control" value="{{ $permohonan['nama_ketua'] }}"
                                         disabled>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">Nomor Telepon Ketua</label>
+                                    <label class="form-label">Nomor Telepon Penanggung Jawab</label>
                                     <input type="text" class="form-control"
                                         value="{{ $permohonan['nomor_telepon_ketua'] }}" disabled>
                                 </div>
