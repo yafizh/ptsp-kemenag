@@ -53,7 +53,7 @@ class PermohonanMagangPKLController extends Controller
         PermohonanTerverifikasi::create([
             'id_permohonan'      => $permohonan->id,
             'id_pengguna'        => auth()->user()->id,
-            'tanggal_verifikasi' => Carbon::now('Asia/Kuala_Lumpur')->format('Y-m-d'),
+            'tanggal_waktu_verifikasi' => Carbon::now('Asia/Kuala_Lumpur')->format('Y-m-d'),
             'keterangan'         => $request->get('keterangan_diterima'),
             'status'             => PermohonanStatus::DISETUJUI
         ]);
@@ -71,7 +71,7 @@ class PermohonanMagangPKLController extends Controller
         PermohonanTerverifikasi::create([
             'id_permohonan'      => $permohonan->id,
             'id_pengguna'        => auth()->user()->id,
-            'tanggal_verifikasi' => Carbon::now('Asia/Kuala_Lumpur')->format('Y-m-d'),
+            'tanggal_waktu_verifikasi' => Carbon::now('Asia/Kuala_Lumpur')->format('Y-m-d'),
             'keterangan'         => $request->get('keterangan_ditolak'),
             'status'             => PermohonanStatus::DITOLAK
         ]);
