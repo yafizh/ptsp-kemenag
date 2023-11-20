@@ -89,15 +89,18 @@ Route::middleware('auth')->group(function () {
                 'pengajuan-cuti' => 'pengajuan'
             ])->except('create');
 
-        Route::resource('/pengajuan-spdp', PengajuanSPDPController::class)
-            ->parameters(['pengajuan-spdp' => 'pengajuan'])
-            ->except('create');
         Route::controller(PengajuanSPDPController::class)
             ->prefix('/pengajuan-spdp')
             ->group(function () {
+                Route::get('/laporan', 'laporan');
+                Route::post('/laporan', 'laporan');
+                Route::post('/print', 'print');
                 Route::post('/{pengajuan}/tolak', 'tolak');
                 Route::post('/{pengajuan}/terima', 'terima');
             });
+        Route::resource('/pengajuan-spdp', PengajuanSPDPController::class)
+            ->parameters(['pengajuan-spdp' => 'pengajuan'])
+            ->except('create');
     });
 
     Route::prefix(UserStatus::PEGAWAI->route())->group(function () {
@@ -158,14 +161,17 @@ Route::middleware('auth')->group(function () {
         Route::resource('/pengajuan-cuti', PengajuanCutiController::class)
             ->parameters(['pengajuan-cuti' => 'pengajuan']);
 
-        Route::resource('/pengajuan-spdp', PengajuanSPDPController::class)
-            ->parameters(['pengajuan-spdp' => 'pengajuan']);
         Route::controller(PengajuanSPDPController::class)
             ->prefix('/pengajuan-spdp')
             ->group(function () {
+                Route::get('/laporan', 'laporan');
+                Route::post('/laporan', 'laporan');
+                Route::post('/print', 'print');
                 Route::post('/{pengajuan}/tolak', 'tolak');
                 Route::post('/{pengajuan}/terima', 'terima');
             });
+        Route::resource('/pengajuan-spdp', PengajuanSPDPController::class)
+            ->parameters(['pengajuan-spdp' => 'pengajuan']);
     });
 });
 

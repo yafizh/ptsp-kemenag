@@ -171,4 +171,69 @@ class PengajuanSPDPController extends Controller
 
         return redirect('/' . auth()->user()->status->route() . '/pengajuan-spdp/' . $pengajuan->id)->with('success', 'Berhasil menolak pengajuan.');
     }
+
+    public function laporan(Request $request)
+    {
+        $jenisKendaraan = JenisKendaraan::orderBy('nama')->get();
+        $today = Carbon::now('Asia/Kuala_Lumpur')->locale('ID');
+        $filter = [
+            'today' => $today->day . ' ' . $today->getTranslatedMonthName() . ' ' . $today->year
+        ];
+
+        $pengajuan = Pengajuan::with([
+            'pengguna.pegawai',
+            'pengajuanSPDP.jenisKendaraan',
+            'pengajuanTerverifikasi'
+        ])
+            ->whereHas('pengajuanSPDP')
+            ->orderBy('tanggal_waktu_pengajuan', 'DESC');
+
+        if ($request->get('dari_tanggal') && $request->get('sampai_tanggal')) {
+            $pengajuan = $pengajuan
+                ->whereBetween('tanggal_waktu_pengajuan', [
+                    $request->get('dari_tanggal'),
+                    $request->get('sampai_tanggal')
+                ]);
+
+
+            $dariTanggal = Carbon::createFromDate($request->get('dari_tanggal'))->locale('ID');
+            $sampaiTanggal = Carbon::createFromDate($request->get('sampai_tanggal'))->locale('ID');
+            $filter['dari_tanggal']    = $dariTanggal->day . ' ' . $dariTanggal->getTranslatedMonthName() . ' ' . $dariTanggal->year;
+            $filter['sampai_tanggal']  = $sampaiTanggal->day . ' ' . $sampaiTanggal->getTranslatedMonthName() . ' ' . $sampaiTanggal->year;
+        }
+
+        if ($request->get('jenis_kendaraan')) {
+            $pengajuan = $pengajuan->whereHas('pengajuanSPDP', function ($query) use ($request) {
+                $query->where('id_jenis_kendaraan', $request->get('jenis_kendaraan'));
+            });
+            $filter['jenis_kendaraan'] = JenisKendaraan::where('id', $request->get('jenis_kendaraan'))->first()->nama;
+        }
+
+        if ($request->get('status')) {
+            $filter['status'] = $request->get('status');
+            if ($request->get('status') == 'Pengajuan Baru') {
+                $pengajuan = $pengajuan->doesntHave('pengajuanTerverifikasi');
+            } else {
+                $pengajuan = $pengajuan->whereHas('pengajuanTerverifikasi', function ($query) use ($request) {
+                    $query->where('status', $request->get('status'));
+                });
+            }
+        }
+
+        $pengajuan = $pengajuan->get()
+            ->map(function ($item) {
+                return [
+                    'tanggal_pengajuan' => $item->tanggalPengajuanFormatIndonesia(),
+                    'nip'               => $item->pengguna->pegawai->nip,
+                    'nama'              => $item->pengguna->pegawai->nama,
+                    'jenis_kendaraan'   => $item->pengajuanSPDP->jenisKendaraan->nama,
+                    'status'            => is_null($item->pengajuanTerverifikasi) ? null : $item->pengajuanTerverifikasi->status
+                ];
+            });
+
+        if ($request->get('print'))
+            return view('dashboard.pengajuan.spdp.cetak', compact('pengajuan', 'filter'));
+
+        return view('dashboard.pengajuan.spdp.laporan', compact('pengajuan', 'filter', 'jenisKendaraan'));
+    }
 }

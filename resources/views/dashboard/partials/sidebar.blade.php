@@ -162,7 +162,7 @@
                             'sidebar-link',
                             'active' =>
                                 request()->segment(2) == 'pengajuan-cuti' &&
-                                request()->segment(3) == 'laporab',
+                                request()->segment(3) == 'laporan',
                         ])
                             href="/{{ auth()->user()->status->route() }}/pengajuan-cuti/laporan" aria-expanded="false">
                             <span>
@@ -172,8 +172,13 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a @class(['sidebar-link', 'active' => request()->segment(2) == '1']) href="/{{ auth()->user()->status->route() }}/1"
-                            aria-expanded="false">
+                        <a @class([
+                            'sidebar-link',
+                            'active' =>
+                                request()->segment(2) == 'pengajuan-spdp' &&
+                                request()->segment(3) == 'laporan',
+                        ])
+                            href="/{{ auth()->user()->status->route() }}/pengajuan-spdp/laporan" aria-expanded="false">
                             <span>
                                 <i class="ti ti-report"></i>
                             </span>
