@@ -12,10 +12,10 @@
     <header class="text-center p-4">
         <img src="/assets/images/logos/kemenag.png" alt="Logo" width="110" style="position: absolute; left: 30px;">
         <h4>KEMENTERIAN AGAMA</h4>
-        <h4>BANJARBARU</h4>
-        Jl. R. Soeprapto, Rantau Kiwa, Kec. Tapin Utara,
+        <h4>KABUPATEN BANJAR</h4>
+        Sungai Sipai, Kec. Martapura,
         <br>
-        Kabupaten Tapin, Kalimantan Selatan 71152
+        Kabupaten Banjar, Kalimantan Selatan 70714
     </header>
     <div class="d-flex flex-column justify-content-center w-100">
         <div style="width: 100%; border-top: 3px solid black;"></div>
@@ -36,7 +36,7 @@
     @yield('app-content')
     <footer class="d-flex justify-content-end p-3">
         <div class="text-center">
-            <h6>Banjarbaru, {{ $filter['today'] }}</h6>
+            <h6>Martapura, {{ $filter['today'] }}</h6>
             <br><br><br><br><br>
             @if (auth()->user()->status == \App\Enums\User\UserStatus::ADMIN)
                 <h6>ADMIN</h6>

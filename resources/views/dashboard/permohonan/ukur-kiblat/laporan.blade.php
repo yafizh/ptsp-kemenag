@@ -40,7 +40,11 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-end gap-2">
+                                <a href="/{{ auth()->user()->status->route() }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}"
+                                    class="btn btn-secondary">
+                                    Reset Filter
+                                </a>
                                 <button type="submit" class="btn btn-primary">Filter</button>
                             </div>
                         </form>
@@ -71,7 +75,8 @@
                             <form action="" method="POST" target="_blank">
                                 @csrf
                                 <input type="text" hidden name="print" value="1">
-                                <input type="text" hidden name="dari_tanggal" value="{{ $_POST['dari_tanggal'] ?? '' }}">
+                                <input type="text" hidden name="dari_tanggal"
+                                    value="{{ $_POST['dari_tanggal'] ?? '' }}">
                                 <input type="text" hidden name="sampai_tanggal"
                                     value="{{ $_POST['sampai_tanggal'] ?? '' }}">
                                 <input type="text" hidden name="status_tanggal"

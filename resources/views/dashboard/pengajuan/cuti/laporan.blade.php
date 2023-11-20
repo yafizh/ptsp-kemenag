@@ -52,7 +52,11 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-end gap-2">
+                                <a href="/{{ auth()->user()->status->route() }}/{{ request()->segment(2) }}/{{ request()->segment(3) }}"
+                                    class="btn btn-secondary">
+                                    Reset Filter
+                                </a>
                                 <button type="submit" class="btn btn-primary">Filter</button>
                             </div>
                         </form>

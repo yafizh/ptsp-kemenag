@@ -94,7 +94,9 @@
                     <a @class([
                         'sidebar-link',
                         'text-wrap',
-                        'active' => request()->segment(2) == 'pengajuan-spdp',
+                        'active' =>
+                            request()->segment(2) == 'pengajuan-spdp' &&
+                            request()->segment(3) == '',
                     ]) href="/{{ auth()->user()->status->route() }}/pengajuan-spdp"
                         aria-expanded="false">
                         <span>
