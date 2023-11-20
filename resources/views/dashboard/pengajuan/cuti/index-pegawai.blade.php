@@ -34,10 +34,10 @@
                             <tbody>
                                 @foreach ($pengajuan as $item)
                                     <tr>
-                                        <th class="text-center td-fit">{{ $loop->iteration }}</th>
-                                        <td class="text-center">{{ $item['tanggal_pengajuan'] }}</td>
-                                        <td class="text-center">{{ $item['jenis_cuti'] }}</td>
-                                        <td class="text-center">
+                                        <th class="text-center align-middle td-fit">{{ $loop->iteration }}</th>
+                                        <td class="text-center align-middle">{{ $item['tanggal_pengajuan'] }}</td>
+                                        <td class="text-center align-middle">{{ $item['jenis_cuti'] }}</td>
+                                        <td class="text-center align-middle">
                                             @if (is_null($item['status']))
                                                 <span class="badge text-bg-info">Pengajuan Baru</span>
                                             @elseif ($item['status'] == \App\Enums\Pengajuan\PengajuanStatus::DITOLAK)
@@ -46,7 +46,7 @@
                                                 <span class="badge text-bg-success">Disetujui</span>
                                             @endif
                                         </td>
-                                        <td class="td-fit">
+                                        <td class="td-fit align-middle">
                                             <div class="d-flex gap-1 justify-content-center">
                                                 <a href="/{{ auth()->user()->status->route() }}/pengajuan-cuti/{{ $item['id'] }}"
                                                     class="btn btn-sm btn-info">

@@ -74,16 +74,20 @@ Route::middleware('auth')->group(function () {
                 Route::post('/{permohonan}/terima', 'terima');
             });
 
+
+        Route::controller(PengajuanCutiController::class)
+            ->prefix('/pengajuan-cuti')
+            ->group(function () {
+                Route::get('/laporan', 'laporan');
+                Route::post('/laporan', 'laporan');
+                Route::post('/print', 'print');
+                Route::post('/{pengajuan}/tolak', 'tolak');
+                Route::post('/{pengajuan}/terima', 'terima');
+            });
         Route::resource('/pengajuan-cuti', PengajuanCutiController::class)
             ->parameters([
                 'pengajuan-cuti' => 'pengajuan'
             ])->except('create');
-        Route::controller(PengajuanCutiController::class)
-            ->prefix('/pengajuan-cuti')
-            ->group(function () {
-                Route::post('/{pengajuan}/tolak', 'tolak');
-                Route::post('/{pengajuan}/terima', 'terima');
-            });
 
         Route::resource('/pengajuan-spdp', PengajuanSPDPController::class)
             ->parameters(['pengajuan-spdp' => 'pengajuan'])
@@ -98,7 +102,6 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix(UserStatus::PEGAWAI->route())->group(function () {
         Route::get('/', [DashboardController::class, 'pegawai']);
-
         Route::resource('/pengajuan-cuti', PengajuanCutiController::class)
             ->parameters(['pengajuan-cuti' => 'pengajuan']);
         Route::resource('/pengajuan-spdp', PengajuanSPDPController::class)
@@ -143,15 +146,17 @@ Route::middleware('auth')->group(function () {
                 Route::post('/{permohonan}/tolak', 'tolak');
                 Route::post('/{permohonan}/terima', 'terima');
             });
-
-        Route::resource('/pengajuan-cuti', PengajuanCutiController::class)
-            ->parameters(['pengajuan-cuti' => 'pengajuan']);
         Route::controller(PengajuanCutiController::class)
             ->prefix('/pengajuan-cuti')
             ->group(function () {
+                Route::get('/laporan', 'laporan');
+                Route::post('/laporan', 'laporan');
+                Route::post('/print', 'print');
                 Route::post('/{pengajuan}/tolak', 'tolak');
                 Route::post('/{pengajuan}/terima', 'terima');
             });
+        Route::resource('/pengajuan-cuti', PengajuanCutiController::class)
+            ->parameters(['pengajuan-cuti' => 'pengajuan']);
 
         Route::resource('/pengajuan-spdp', PengajuanSPDPController::class)
             ->parameters(['pengajuan-spdp' => 'pengajuan']);

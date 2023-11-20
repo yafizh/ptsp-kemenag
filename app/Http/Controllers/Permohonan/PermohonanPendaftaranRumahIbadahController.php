@@ -126,6 +126,7 @@ class PermohonanPendaftaranRumahIbadahController extends Controller
             $permohonan = $permohonan->whereHas('pendaftaranRumahIbadah', function ($query) use ($request) {
                 $query->where('id_rumah_ibadah', $request->get('rumah_ibadah'));
             });
+            $filter['rumah_ibadah'] = RumahIbadah::where('id', $request->get('rumah_ibadah'))->first()->nama;
         }
 
         if ($request->get('status')) {
