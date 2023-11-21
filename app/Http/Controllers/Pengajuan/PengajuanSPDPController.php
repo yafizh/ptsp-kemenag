@@ -236,4 +236,9 @@ class PengajuanSPDPController extends Controller
 
         return view('dashboard.pengajuan.spdp.laporan', compact('pengajuan', 'filter', 'jenisKendaraan'));
     }
+
+    public function spdp()
+    {
+        return view('dashboard.pengajuan.spdp.spdp');
+    }
 }

@@ -95,6 +95,7 @@ Route::middleware('auth')->group(function () {
                 Route::get('/laporan', 'laporan');
                 Route::post('/laporan', 'laporan');
                 Route::post('/print', 'print');
+                Route::get('/spdp', 'spdp');
                 Route::post('/{pengajuan}/tolak', 'tolak');
                 Route::post('/{pengajuan}/terima', 'terima');
             });
@@ -107,6 +108,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [DashboardController::class, 'pegawai']);
         Route::resource('/pengajuan-cuti', PengajuanCutiController::class)
             ->parameters(['pengajuan-cuti' => 'pengajuan']);
+
+        Route::controller(PengajuanSPDPController::class)
+            ->prefix('/pengajuan-spdp')
+            ->group(function () {
+                Route::get('/spdp', 'spdp');
+            });
         Route::resource('/pengajuan-spdp', PengajuanSPDPController::class)
             ->parameters(['pengajuan-spdp' => 'pengajuan']);
     });
@@ -167,6 +174,7 @@ Route::middleware('auth')->group(function () {
                 Route::get('/laporan', 'laporan');
                 Route::post('/laporan', 'laporan');
                 Route::post('/print', 'print');
+                Route::get('/spdp', 'spdp');
                 Route::post('/{pengajuan}/tolak', 'tolak');
                 Route::post('/{pengajuan}/terima', 'terima');
             });
