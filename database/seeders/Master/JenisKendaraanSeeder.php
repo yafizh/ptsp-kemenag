@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Master;
 
 use App\Models\Master\JenisKendaraan;
 use Illuminate\Database\Seeder;

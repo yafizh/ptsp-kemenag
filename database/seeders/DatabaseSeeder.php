@@ -6,6 +6,12 @@ namespace Database\Seeders;
 
 use App\Enums\User\UserStatus;
 use App\Models\Pengguna;
+use Database\Seeders\Master\GolonganSeeder;
+use Database\Seeders\Master\JabatanSeeder;
+use Database\Seeders\Master\JenisCutiSeeder;
+use Database\Seeders\Master\JenisKendaraanSeeder;
+use Database\Seeders\Master\PangkatSeeder;
+use Database\Seeders\Master\RumahIbadahSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +25,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
+            PangkatSeeder::class,
+            GolonganSeeder::class,
+            JabatanSeeder::class,
             RumahIbadahSeeder::class,
             JenisCutiSeeder::class,
             JenisKendaraanSeeder::class,

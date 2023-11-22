@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Master;
 
 use App\Models\Master\RumahIbadah;
 use Illuminate\Database\Seeder;
