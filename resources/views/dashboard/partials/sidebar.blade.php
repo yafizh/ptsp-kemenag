@@ -38,6 +38,30 @@
                     <li class="sidebar-item">
                         <a @class([
                             'sidebar-link',
+                            'active' => request()->segment(2) == 'golongan',
+                        ]) href="/{{ auth()->user()->status->route() }}/golongan"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-building-church"></i>
+                            </span>
+                            <span class="hide-menu">Golongan</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class([
+                            'sidebar-link',
+                            'active' => request()->segment(2) == 'jabatan',
+                        ]) href="/{{ auth()->user()->status->route() }}/jabatan"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-building-church"></i>
+                            </span>
+                            <span class="hide-menu">Jabatan</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class([
+                            'sidebar-link',
                             'active' => request()->segment(2) == 'rumah-ibadah',
                         ]) href="/{{ auth()->user()->status->route() }}/rumah-ibadah"
                             aria-expanded="false">
