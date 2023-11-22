@@ -30,6 +30,19 @@
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
+                                        <label for="status_user" class="form-label">Status User</label>
+                                        <select name="status_user" class="form-control" id="status_user" required>
+                                            <option value="" disabled selected>Pilih Status User</option>
+                                            @foreach (\App\Enums\User\UserStatus::cases() as $userStatus)
+                                                <option value="{{ $userStatus->value }}"
+                                                    {{ $userStatus->value == old('status_user', $pegawai->pengguna->status->value) ? 'selected' : '' }}>
+                                                    {{ $userStatus->value }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="mb-3">
                                         <label for="nip" class="form-label">NIP</label>
                                         <input type="number" min="0" class="form-control" id="nip"
                                             name="nip" value="{{ old('nip', $pegawai->nip) }}" required>
@@ -47,10 +60,39 @@
                                         <label for="jabatan" class="form-label">Jabatan</label>
                                         <select name="jabatan" class="form-control" id="jabatan" required>
                                             <option value="" disabled selected>Pilih Jabatan</option>
-                                            @foreach (\App\Enums\Pegawai\PegawaiJabatan::cases() as $jabatan)
-                                                <option value="{{ $jabatan->value }}"
-                                                    {{ $jabatan->value == old('jabatan', $pegawai->jabatan->value) ? 'selected' : '' }}>
-                                                    {{ $jabatan->value }}</option>
+                                            @foreach ($jabatan as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $item->id == old('jabatan', $pegawai->id_jabatan) ? 'selected' : '' }}>
+                                                    {{ $item->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="mb-3">
+                                        <label for="pangkat" class="form-label">Pangkat</label>
+                                        <select name="pangkat" class="form-control" id="pangkat" required>
+                                            <option value="" disabled selected>Pilih Pangkat</option>
+                                            @foreach ($pangkat as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $item->id == old('pangkat', $pegawai->id_pangkat) ? 'selected' : '' }}>
+                                                    {{ $item->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="mb-3">
+                                        <label for="golongan" class="form-label">Golongan</label>
+                                        <select name="golongan" class="form-control" id="golongan" required>
+                                            <option value="" disabled selected>Pilih Golongan</option>
+                                            @foreach ($golongan as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $item->id == old('golongan', $pegawai->id_golongan) ? 'selected' : '' }}>
+                                                    {{ $item->nama }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -99,7 +141,8 @@
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
+                                        <input type="date" class="form-control" id="tanggal_lahir"
+                                            name="tanggal_lahir"
                                             value="{{ old('tanggal_lahir', $pegawai->tanggal_lahir) }}" required>
                                     </div>
                                 </div>

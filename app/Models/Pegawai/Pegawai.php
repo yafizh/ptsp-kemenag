@@ -2,9 +2,11 @@
 
 namespace App\Models\Pegawai;
 
-use App\Enums\Pegawai\PegawaiJabatan;
 use App\Enums\Umum\JenisKelamin;
 use App\Enums\Umum\PendidikanTerakhir;
+use App\Models\Master\Golongan;
+use App\Models\Master\Jabatan;
+use App\Models\Master\Pangkat;
 use App\Models\Pengguna;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -17,9 +19,11 @@ class Pegawai extends Model
 
     protected $fillable = [
         'id_pengguna',
+        'id_golongan',
+        'id_jabatan',
+        'id_pangkat',
         'nip',
         'nama',
-        'jabatan',
         'jenis_kelamin',
         'nomor_telepon',
         'pendidikan_terakhir',
@@ -30,7 +34,6 @@ class Pegawai extends Model
     ];
 
     protected $casts = [
-        'jabatan'               => PegawaiJabatan::class,
         'jenis_kelamin'         => JenisKelamin::class,
         'pendidikan_terakhir'   => PendidikanTerakhir::class,
     ];
@@ -43,6 +46,21 @@ class Pegawai extends Model
     public function pengguna(): BelongsTo
     {
         return $this->belongsTo(Pengguna::class, 'id_pengguna', 'id');
+    }
+
+    public function jabatan(): BelongsTo
+    {
+        return $this->belongsTo(Jabatan::class, 'id_jabatan', 'id');
+    }
+
+    public function pangkat(): BelongsTo
+    {
+        return $this->belongsTo(Pangkat::class, 'id_pangkat', 'id');
+    }
+
+    public function golongan(): BelongsTo
+    {
+        return $this->belongsTo(Golongan::class, 'id_golongan', 'id');
     }
 
     public function tmtFormatIndonesia(): string

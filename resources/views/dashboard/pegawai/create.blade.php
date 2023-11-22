@@ -28,6 +28,19 @@
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
+                                        <label for="status_user" class="form-label">Status User</label>
+                                        <select name="status_user" class="form-control" id="status_user" required>
+                                            <option value="" disabled selected>Pilih Status User</option>
+                                            @foreach (\App\Enums\User\UserStatus::cases() as $userStatus)
+                                                <option value="{{ $userStatus->value }}"
+                                                    {{ $userStatus->value == old('status_user') ? 'selected' : '' }}>
+                                                    {{ $userStatus->value }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="mb-3">
                                         <label for="nip" class="form-label">NIP</label>
                                         <input type="number" min="0" class="form-control" id="nip"
                                             name="nip" value="{{ old('nip') }}" required>
@@ -45,10 +58,39 @@
                                         <label for="jabatan" class="form-label">Jabatan</label>
                                         <select name="jabatan" class="form-control" id="jabatan" required>
                                             <option value="" disabled selected>Pilih Jabatan</option>
-                                            @foreach (\App\Enums\Pegawai\PegawaiJabatan::cases() as $jabatan)
-                                                <option value="{{ $jabatan->value }}"
-                                                    {{ $jabatan->value == old('jabatan') ? 'selected' : '' }}>
-                                                    {{ $jabatan->value }}</option>
+                                            @foreach ($jabatan as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $item->id == old('jabatan') ? 'selected' : '' }}>
+                                                    {{ $item->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="mb-3">
+                                        <label for="pangkat" class="form-label">Pangkat</label>
+                                        <select name="pangkat" class="form-control" id="pangkat" required>
+                                            <option value="" disabled selected>Pilih Pangkat</option>
+                                            @foreach ($pangkat as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $item->id == old('pangkat') ? 'selected' : '' }}>
+                                                    {{ $item->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="mb-3">
+                                        <label for="golongan" class="form-label">Golongan</label>
+                                        <select name="golongan" class="form-control" id="golongan" required>
+                                            <option value="" disabled selected>Pilih Golongan</option>
+                                            @foreach ($golongan as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $item->id == old('golongan') ? 'selected' : '' }}>
+                                                    {{ $item->nama }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -97,8 +139,8 @@
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-                                            value="{{ old('tanggal_lahir') }}" required>
+                                        <input type="date" class="form-control" id="tanggal_lahir"
+                                            name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -111,7 +153,7 @@
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="alamat" class="form-label">Alamat</label>
-                                        <textarea name="alamat" id="alamat" class="form-control">{{ old('alamat') }}</textarea>
+                                        <textarea name="alamat" id="alamat" class="form-control" rows="1">{{ old('alamat') }}</textarea>
                                     </div>
                                 </div>
                             </div>

@@ -26,6 +26,13 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="mb-3">
+                                    <label class="form-label">Status User</label>
+                                    <input type="text" class="form-control" value="{{ $pegawai->pengguna->status }}"
+                                        disabled>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="mb-3">
                                     <label class="form-label">NIP</label>
                                     <input type="text" class="form-control" value="{{ $pegawai->nip }}" disabled>
                                 </div>
@@ -39,7 +46,19 @@
                             <div class="col-12 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Jabatan</label>
-                                    <input type="text" class="form-control" value="{{ $pegawai->jabatan }}" disabled>
+                                    <input type="text" class="form-control" value="{{ $pegawai->jabatan->nama }}" disabled>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Pangkat</label>
+                                    <input type="text" class="form-control" value="{{ $pegawai->pangkat->nama }}" disabled>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Golongan</label>
+                                    <input type="text" class="form-control" value="{{ $pegawai->golongan->nama }}" disabled>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
@@ -73,8 +92,8 @@
                             <div class="col-12 col-md-6">
                                 <div class="mb-3">
                                     <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                                    <input type="text" class="form-control" value="{{ $pegawai->tanggalLahirFormatIndonesia() }}"
-                                        disabled>
+                                    <input type="text" class="form-control"
+                                        value="{{ $pegawai->tanggalLahirFormatIndonesia() }}" disabled>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">

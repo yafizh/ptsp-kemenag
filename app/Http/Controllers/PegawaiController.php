@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Pegawai\PegawaiJabatan;
+use App\Models\Master\Golongan;
+use App\Models\Master\Jabatan;
+use App\Models\Master\Pangkat;
 use App\Models\Pegawai\Pegawai;
 use App\Models\Pegawai\PegawaiFoto;
 use App\Models\Pengguna;
@@ -23,15 +26,22 @@ class PegawaiController extends Controller
 
     public function create()
     {
-        return view('dashboard.pegawai.create');
+        $jabatan = Jabatan::orderBy('nama')->get();
+        $golongan = Golongan::orderBy('nama')->get();
+        $pangkat = Pangkat::orderBy('nama')->get();
+
+        return view('dashboard.pegawai.create', compact('jabatan', 'golongan', 'pangkat'));
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'status_user'           => 'required',
             'nip'                   => 'required',
             'nama'                  => 'required',
             'jabatan'               => 'required',
+            'golongan'              => 'required',
+            'pangkat'               => 'required',
             'jenis_kelamin'         => 'required',
             'nomor_telepon'         => 'required',
             'pendidikan_terakhir'   => 'required',
@@ -43,15 +53,10 @@ class PegawaiController extends Controller
         ]);
 
         DB::transaction(function () use ($validatedData) {
-            $userStatus = null;
-            foreach (PegawaiJabatan::cases() as $jabatan) {
-                if ($jabatan->value == $validatedData['jabatan'])
-                    $userStatus = $jabatan->statusUser();
-            }
             $pengguna = Pengguna::create([
                 'username'  => $validatedData['nip'],
                 'password'  => $validatedData['nip'],
-                'status'    => $userStatus
+                'status'    => $validatedData['status_user']
             ]);
 
             $uploadFile = UploadFile::where('nama_file', $validatedData['foto'])->first();
@@ -65,9 +70,11 @@ class PegawaiController extends Controller
 
             $pegawai = Pegawai::create([
                 'id_pengguna'           => $pengguna->id,
+                'id_jabatan'            => $validatedData['jabatan'],
+                'id_golongan'           => $validatedData['golongan'],
+                'id_pangkat'            => $validatedData['pangkat'],
                 'nip'                   => $validatedData['nip'],
                 'nama'                  => $validatedData['nama'],
-                'jabatan'               => $validatedData['jabatan'],
                 'jenis_kelamin'         => $validatedData['jenis_kelamin'],
                 'nomor_telepon'         => $validatedData['nomor_telepon'],
                 'pendidikan_terakhir'   => $validatedData['pendidikan_terakhir'],
@@ -96,15 +103,22 @@ class PegawaiController extends Controller
 
     public function edit(Pegawai $pegawai)
     {
-        return view('dashboard.pegawai.edit', compact('pegawai'));
+        $jabatan = Jabatan::orderBy('nama')->get();
+        $golongan = Golongan::orderBy('nama')->get();
+        $pangkat = Pangkat::orderBy('nama')->get();
+
+        return view('dashboard.pegawai.edit', compact('pegawai', 'jabatan', 'golongan', 'pangkat'));
     }
 
     public function update(Request $request, Pegawai $pegawai)
     {
         $validatedData = $request->validate([
+            'status_user'           => 'required',
             'nip'                   => 'required',
             'nama'                  => 'required',
             'jabatan'               => 'required',
+            'pangkat'               => 'required',
+            'golongan'              => 'required',
             'jenis_kelamin'         => 'required',
             'nomor_telepon'         => 'required',
             'pendidikan_terakhir'   => 'required',
@@ -116,14 +130,9 @@ class PegawaiController extends Controller
         ]);
 
         DB::transaction(function () use ($validatedData, $pegawai) {
-            $userStatus = null;
-            foreach (PegawaiJabatan::cases() as $jabatan) {
-                if ($jabatan->value == $validatedData['jabatan'])
-                    $userStatus = $jabatan->statusUser();
-            }
             $pegawai->pengguna->update([
                 'username' => $validatedData['nip'],
-                'status'    => $userStatus
+                'status'   => $validatedData['status_user']
             ]);
 
             if ($validatedData['foto'] != $pegawai->foto->nama_file) {
@@ -145,9 +154,11 @@ class PegawaiController extends Controller
             }
 
             $pegawai->update([
+                'id_jabatan'            => $validatedData['jabatan'],
+                'id_golongan'           => $validatedData['golongan'],
+                'id_pangkat'            => $validatedData['pangkat'],
                 'nip'                   => $validatedData['nip'],
                 'nama'                  => $validatedData['nama'],
-                'jabatan'               => $validatedData['jabatan'],
                 'jenis_kelamin'         => $validatedData['jenis_kelamin'],
                 'nomor_telepon'         => $validatedData['nomor_telepon'],
                 'pendidikan_terakhir'   => $validatedData['pendidikan_terakhir'],

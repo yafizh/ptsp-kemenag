@@ -7,6 +7,7 @@ use App\Http\Controllers\Master\GolonganController;
 use App\Http\Controllers\Master\JabatanController;
 use App\Http\Controllers\Master\JenisCutiController;
 use App\Http\Controllers\Master\JenisKendaraanController;
+use App\Http\Controllers\Master\PangkatController;
 use App\Http\Controllers\Master\RumahIbadahController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\Pengajuan\PengajuanCutiController;
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('jenis-kendaraan', JenisKendaraanController::class);
         Route::resource('golongan', GolonganController::class);
         Route::resource('jabatan', JabatanController::class);
+        Route::resource('pangkat', PangkatController::class);
 
         Route::controller(PermohonanMagangPKLController::class)
             ->prefix('/permohonan-magang-pkl')

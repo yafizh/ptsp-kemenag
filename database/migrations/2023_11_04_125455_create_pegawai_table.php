@@ -15,9 +15,11 @@ return new class extends Migration
         Schema::create((new Pegawai)->getTable(), function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_pengguna');
+            $table->foreignId('id_golongan');
+            $table->foreignId('id_jabatan');
+            $table->foreignId('id_pangkat');
             $table->string('nip')->unique();
             $table->string('nama');
-            $table->enum('jabatan', array_column(PegawaiJabatan::cases(), 'value'));
             $table->enum('jenis_kelamin', array_column(JenisKelamin::cases(), 'value'));
             $table->string('nomor_telepon')->unique();
             $table->enum('pendidikan_terakhir', array_column(PendidikanTerakhir::cases(), 'value'));
