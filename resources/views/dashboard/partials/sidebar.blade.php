@@ -38,6 +38,18 @@
                     <li class="sidebar-item">
                         <a @class([
                             'sidebar-link',
+                            'active' => request()->segment(2) == 'pangkat',
+                        ]) href="/{{ auth()->user()->status->route() }}/pangkat"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-building-church"></i>
+                            </span>
+                            <span class="hide-menu">Pangkat</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class([
+                            'sidebar-link',
                             'active' => request()->segment(2) == 'golongan',
                         ]) href="/{{ auth()->user()->status->route() }}/golongan"
                             aria-expanded="false">
