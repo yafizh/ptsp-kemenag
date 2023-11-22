@@ -3,6 +3,7 @@
 use App\Enums\User\UserStatus;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Master\BiayaPerjalananDinasController;
 use App\Http\Controllers\Master\GolonganController;
 use App\Http\Controllers\Master\JabatanController;
 use App\Http\Controllers\Master\JenisCutiController;
@@ -44,6 +45,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('golongan', GolonganController::class);
         Route::resource('jabatan', JabatanController::class);
         Route::resource('pangkat', PangkatController::class);
+        Route::resource('biaya-perjalanan-dinas', BiayaPerjalananDinasController::class)
+            ->parameters([
+                'biaya-perjalanan-dinas' => 'biayaPerjalananDinas'
+            ]);
 
         Route::controller(PermohonanMagangPKLController::class)
             ->prefix('/permohonan-magang-pkl')

@@ -74,6 +74,18 @@
                     <li class="sidebar-item">
                         <a @class([
                             'sidebar-link',
+                            'active' => request()->segment(2) == 'biaya-perjalanan-dinas',
+                        ])
+                            href="/{{ auth()->user()->status->route() }}/biaya-perjalanan-dinas" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-building-church"></i>
+                            </span>
+                            <span class="hide-menu">Biaya Perjalan Dinas</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class([
+                            'sidebar-link',
                             'active' => request()->segment(2) == 'rumah-ibadah',
                         ]) href="/{{ auth()->user()->status->route() }}/rumah-ibadah"
                             aria-expanded="false">
