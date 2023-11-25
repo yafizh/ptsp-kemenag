@@ -3,8 +3,10 @@
 namespace App\Models\Pengajuan;
 
 use App\Enums\Pengajuan\PengajuanStatus;
+use App\Models\Pengguna;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PengajuanTerverifikasi extends Model
 {
@@ -26,5 +28,10 @@ class PengajuanTerverifikasi extends Model
     {
         $tanggalVerifikasi = Carbon::createFromDate($this->tanggal_waktu_verifikasi)->locale('ID');
         return $tanggalVerifikasi->day . " " . $tanggalVerifikasi->getTranslatedMonthName() . " " . $tanggalVerifikasi->year;
+    }
+
+    public function pengguna(): BelongsTo
+    {
+        return $this->belongsTo(Pengguna::class, 'id_pengguna', 'id');
     }
 }

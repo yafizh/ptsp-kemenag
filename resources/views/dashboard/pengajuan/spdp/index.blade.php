@@ -6,8 +6,7 @@
             <div class="col-12 col-md-6">
                 <h3>Pengajuan SPDP</h3>
             </div>
-            @if (auth()->user()->status == \App\Enums\User\UserStatus::PEGAWAI ||
-                    auth()->user()->status == \App\Enums\User\UserStatus::PIMPINAN)
+            @if (auth()->user()->status == \App\Enums\User\UserStatus::PIMPINAN)
                 <div class="col-12 col-md-6 d-flex justify-content-end">
                     <a href="/{{ auth()->user()->status->route() }}/pengajuan-spdp/create" class="btn btn-primary">
                         Pengajuan Baru
@@ -31,7 +30,6 @@
                                     <th class="text-center align-middle">NIP</th>
                                     <th class="text-center align-middle">Nama</th>
                                     <th class="text-center align-middle">Tanggal Pengajuan</th>
-                                    <th class="text-center align-middle">Tujuan</th>
                                     <th class="text-center align-middle">Status</th>
                                     <th class="text-center align-middle">Aksi</th>
                                 </tr>
@@ -43,7 +41,6 @@
                                         <td class="text-center align-middle">{{ $item['nip'] }}</td>
                                         <td class="align-middle">{{ $item['nama'] }}</td>
                                         <td class="text-center align-middle">{{ $item['tanggal_pengajuan'] }}</td>
-                                        <td class="align-middle">{{ $item['tujuan'] }}</td>
                                         <td class="text-center align-middle">
                                             @if (is_null($item['status']))
                                                 <span class="badge text-bg-info">Pengajuan Baru</span>

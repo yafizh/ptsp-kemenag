@@ -15,8 +15,9 @@ return new class extends Migration
             $table->foreignId('id_pengajuan');
             $table->date('tanggal_berangkat');
             $table->date('tanggal_kembali');
-            $table->string('tujuan');
-            $table->text('keterangan');
+            $table->string('tempat_berangkat');
+            $table->string('tempat_tujuan');
+            $table->text('maksud_perjalanan_dinas');
             $table->timestamps();
         });
     }

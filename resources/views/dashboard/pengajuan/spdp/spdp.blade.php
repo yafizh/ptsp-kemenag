@@ -40,7 +40,7 @@
         }
 
         @page {
-            size: potrait;
+            size: legal;
             /* auto is the initial value */
             margin: 0mm;
             /* this affects the margin in the printer settings */
@@ -75,12 +75,12 @@
             <tr>
                 <td class="td-fit">1.</td>
                 <td style="width: 50%;">Pejabat Pembuat Komitmen</td>
-                <td colspan="2"></td>
+                <td colspan="2">{{ $spdp['pembuat_komitmen_nama'] }}</td>
             </tr>
             <tr>
                 <td>2.</td>
                 <td>Nama / NIP Pegawai yang diperintahkan</td>
-                <td colspan="2"></td>
+                <td colspan="2">{{ $spdp['pegawai_nip'] }}/{{ $spdp['pegawai_nama'] }}</td>
             </tr>
             <tr>
                 <td>3.</td>
@@ -93,21 +93,21 @@
                 </td>
                 <td colspan="2">
                     <ol type="a">
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                        <li>{{ $spdp['pegawai_pangkat'] }}, {{ $spdp['pegawai_golongan'] }}</li>
+                        <li>{{ $spdp['pegawai_jabatan'] }}</li>
+                        <li>{{ $spdp['tingkat_biaya_perjalanan_dinas'] }}</li>
                     </ol>
                 </td>
             </tr>
             <tr>
                 <td>4.</td>
                 <td>Maksud Perjalanan Dinas</td>
-                <td colspan="2"></td>
+                <td colspan="2">{{ $spdp['maksud_perjalanan_dinas'] }}</td>
             </tr>
             <tr>
                 <td>5.</td>
                 <td>Alat Angkutan yang dipergunakan</td>
-                <td colspan="2"></td>
+                <td colspan="2">{{ $spdp['jenis_kendaraan'] }}</td>
             </tr>
             <tr>
                 <td>6.</td>
@@ -119,8 +119,8 @@
                 </td>
                 <td colspan="2">
                     <ol type="a">
-                        <li></li>
-                        <li></li>
+                        <li>{{ $spdp['tempat_berangkat'] }}</li>
+                        <li>{{ $spdp['tempat_tujuan'] }}</li>
                     </ol>
                 </td>
             </tr>
@@ -135,9 +135,9 @@
                 </td>
                 <td colspan="2">
                     <ol type="a">
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                        <li>{{ $spdp['lama_perjalanan_dinas'] }} Hari</li>
+                        <li>{{ $spdp['tanggal_berangkat'] }}</li>
+                        <li>{{ $spdp['tanggal_kembali'] }}</li>
                     </ol>
                 </td>
             </tr>
@@ -186,8 +186,8 @@
                 <td colspan="2">
                     <label style="visibility: hidden;">Pembebanan Anggaran</label>
                     <ol type="a">
-                        <li></li>
-                        <li></li>
+                        <li>Kankemeang Kab. Banjar</li>
+                        <li>524</li>
                     </ol>
                 </td>
             </tr>
@@ -206,12 +206,12 @@
                 </div>
                 <div>
                     <span style="display: inline-block; width: 6rem;">Tanggal</span>
-                    <span>: 18 Oktober 2022</span>
+                    <span>: {{ $spdp['tanggal_verifikasi'] }}</span>
                 </div>
                 <div>Pejabat Pembuat Komitmen, </div>
                 <br><br><br><br>
-                <div><strong>Nazwar Fahmi, S.Kom</strong></div>
-                <div>NIP. 1289371923719</div>
+                <div><strong>{{ $spdp['pembuat_komitmen_nama'] }}</strong></div>
+                <div>NIP. {{ $spdp['pembuat_komitmen_nip'] }}</div>
             </div>
         </div>
     </main>
@@ -228,7 +228,7 @@
             REPUBLIK INDOENSIA
         </h4>
 
-        <table style="font-size: 15px;">
+        <table style="font-size: 14px;">
             <tr>
                 <td style="width: 50%;"></td>
                 <td style="width: 50%;">
@@ -236,21 +236,23 @@
                         <div>I.</div>
                         <div>
                             <div>
-                                <span style="display: inline-block; width: 6rem;">Dikeluarkan di</span>
-                                <span>: Martapura/Kankemanag Banjar</span>
+                                <span style="display: inline-block; width: 6rem;">Berangkat dari</span>
+                                <span>: {{ $spdp['tempat_berangkat'] }}</span>
                             </div>
                             <div>
                                 <span style="display: inline-block; width: 6rem;">Ke</span>
-                                <span>: </span>
+                                <span>: {{ $spdp['tempat_tujuan'] }}</span>
                             </div>
                             <div>
                                 <span style="display: inline-block; width: 6rem;">Pada Tanggal</span>
                                 <span>: 18 Oktober 2022</span>
                             </div>
-                            <div><strong>Kepala Kantor Kementerian Agama Kab.Banjar</strong></div>
+                            <div><strong>{{ $spdp['pegawai_jabatan'] }}</strong></div>
                             <br>
-                            <div><strong>Nazwar Fahmi, S.Kom</strong></div>
-                            <div>NIP. 1289371923719</div>
+                            <br>
+                            <br>
+                            <div><strong>{{ $spdp['pegawai_nama'] }}</strong></div>
+                            <div>NIP. {{ $spdp['pegawai_nip'] }}</div>
                         </div>
                     </div>
                 </td>
@@ -269,6 +271,7 @@
                                 <span>: </span>
                             </div>
                             <div><strong>Kepala</strong></div>
+                            <br>
                             <br>
                             <br>
                             <div>
@@ -295,6 +298,8 @@
                                 <span>: </span>
                             </div>
                             <div><strong>Kepala</strong></div>
+                            <br>
+                            <br>
                             <br>
                             <div>
                                 <strong>(..............................................................................)</strong>
@@ -320,6 +325,8 @@
                             <br>
                             <div>Kepala</div>
                             <br>
+                            <br>
+                            <br>
                             <div>
                                 <strong>(..............................................................................)</strong>
                             </div>
@@ -344,6 +351,8 @@
                                 <span>: </span>
                             </div>
                             <div>Kepala</div>
+                            <br>
+                            <br>
                             <br>
                             <div>
                                 <strong>(..............................................................................)</strong>
@@ -369,6 +378,8 @@
                             <br>
                             <div>Kepala</div>
                             <br>
+                            <br>
+                            <br>
                             <div>
                                 <strong>(..............................................................................)</strong>
                             </div>
@@ -393,6 +404,8 @@
                                 <span>: </span>
                             </div>
                             <div>Kepala</div>
+                            <br>
+                            <br>
                             <br>
                             <div>
                                 <strong>(..............................................................................)</strong>
@@ -418,6 +431,8 @@
                             <br>
                             <div>Kepala</div>
                             <br>
+                            <br>
+                            <br>
                             <div>
                                 <strong>(..............................................................................)</strong>
                             </div>
@@ -443,6 +458,8 @@
                             </div>
                             <div>Kepala</div>
                             <br>
+                            <br>
+                            <br>
                             <div>
                                 <strong>(..............................................................................)</strong>
                             </div>
@@ -467,10 +484,12 @@
                             <br>
                             <div><strong>Pejabat Pembuat Komitmen</strong></div>
                             <br>
+                            <br>
+                            <br>
                             <div>
-                                <strong>Nazwar</strong>
+                                <strong>{{ $spdp['pembuat_komitmen_nama'] }}</strong>
                             </div>
-                            <div>NIP. </div>
+                            <div>NIP. {{ $spdp['pembuat_komitmen_nip'] }}</div>
                         </div>
                     </div>
                 </td>
@@ -483,10 +502,12 @@
                             </div>
                             <div><strong>Pejabat Pembuat Komitmen</strong></div>
                             <br>
+                            <br>
+                            <br>
                             <div>
-                                <strong>Nazwar</strong>
+                                <strong>{{ $spdp['pembuat_komitmen_nama'] }}</strong>
                             </div>
-                            <div>NIP. </div>
+                            <div>NIP. {{ $spdp['pembuat_komitmen_nip'] }}</div>
                         </div>
                     </div>
                 </td>
@@ -517,6 +538,9 @@
             </tr>
         </table>
     </main>
+    <script>
+        window.print();
+    </script>
 </body>
 
 </html>

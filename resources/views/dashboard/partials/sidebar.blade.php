@@ -42,7 +42,7 @@
                         ]) href="/{{ auth()->user()->status->route() }}/pangkat"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-building-church"></i>
+                                <i class="ti ti-user-code"></i>
                             </span>
                             <span class="hide-menu">Pangkat</span>
                         </a>
@@ -54,7 +54,7 @@
                         ]) href="/{{ auth()->user()->status->route() }}/golongan"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-building-church"></i>
+                                <i class="ti ti-user-pause"></i>
                             </span>
                             <span class="hide-menu">Golongan</span>
                         </a>
@@ -66,7 +66,7 @@
                         ]) href="/{{ auth()->user()->status->route() }}/jabatan"
                             aria-expanded="false">
                             <span>
-                                <i class="ti ti-building-church"></i>
+                                <i class="ti ti-user-scan"></i>
                             </span>
                             <span class="hide-menu">Jabatan</span>
                         </a>
@@ -78,7 +78,7 @@
                         ])
                             href="/{{ auth()->user()->status->route() }}/biaya-perjalanan-dinas" aria-expanded="false">
                             <span>
-                                <i class="ti ti-building-church"></i>
+                                <i class="ti ti-home-dollar"></i>
                             </span>
                             <span class="hide-menu">Biaya Perjalan Dinas</span>
                         </a>

@@ -35,12 +35,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="range_dari" class="form-label">Range Dari</label>
-                                <input type="text" class="form-control" id="range_dari" name="range_dari"
+                                <input type="number" min="0" class="form-control" id="range_dari" name="range_dari"
                                     value="{{ old('range_dari', $biayaPerjalananDinas->range_dari) }}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="range_sampai" class="form-label">Range Sampai</label>
-                                <input type="text" class="form-control" id="range_sampai" name="range_sampai"
+                                <input type="number" min="0" class="form-control" id="range_sampai" name="range_sampai"
                                     value="{{ old('range_sampai', $biayaPerjalananDinas->range_sampai) }}" required>
                             </div>
                             <div class="d-flex justify-content-end">
