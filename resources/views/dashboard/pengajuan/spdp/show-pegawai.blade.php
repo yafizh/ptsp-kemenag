@@ -24,16 +24,21 @@
                             <input type="text" class="form-control" value="{{ $pengajuan['tanggal_kembali'] }}" disabled>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Jenis Kendaraan</label>
+                            <label class="form-label">Jenis Transportasi</label>
                             <input type="text" class="form-control" value="{{ $pengajuan['jenis_kendaraan'] }}" disabled>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Tujuan Keberangkatan</label>
-                            <input type="text" class="form-control" value="{{ $pengajuan['tujuan'] }}" disabled>
+                            <label class="form-label">Tempat Berangkat</label>
+                            <input type="text" class="form-control" value="{{ $pengajuan['tempat_berangkat'] }}"
+                                disabled>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Keterangan Keberangkatan</label>
-                            <textarea class="form-control" disabled>{{ $pengajuan['keterangan_spdp'] }}</textarea>
+                            <label class="form-label">Tempat Tujuan</label>
+                            <input type="text" class="form-control" value="{{ $pengajuan['tempat_tujuan'] }}" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Maksud Perjalanan Dinas</label>
+                            <textarea class="form-control" disabled>{{ $pengajuan['maksud_perjalanan_dinas'] }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -68,6 +73,15 @@
                                 <label class="form-label">Keterangan</label>
                                 <textarea class="form-control" disabled>{{ $pengajuan['keterangan_verifikasi'] }}</textarea>
                             </div>
+                        @endif
+                        @if (!is_null($pengajuan['status']))
+                            @if ($pengajuan['status'] == \App\Enums\Pengajuan\PengajuanStatus::DISETUJUI)
+                                <label class="form-label d-block">File SPDP</label>
+                                <a href="/{{ auth()->user()->status->route() }}/pengajuan-spdp/{{ $pengajuan['id'] }}/spdp"
+                                    target="_blank">
+                                    PDF File
+                                </a>
+                            @endif
                         @endif
                     </div>
                 </div>

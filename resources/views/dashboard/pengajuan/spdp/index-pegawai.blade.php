@@ -26,7 +26,6 @@
                                 <tr>
                                     <th class="text-center align-middle td-fit">No</th>
                                     <th class="text-center align-middle">Tanggal Pengajuan</th>
-                                    <th class="text-center align-middle">Tujuan</th>
                                     <th class="text-center align-middle">Status</th>
                                     <th class="text-center align-middle">Aksi</th>
                                 </tr>
@@ -36,7 +35,6 @@
                                     <tr>
                                         <th class="text-center td-fit">{{ $loop->iteration }}</th>
                                         <td class="text-center">{{ $item['tanggal_pengajuan'] }}</td>
-                                        <td>{{ $item['tujuan'] }}</td>
                                         <td class="text-center">
                                             @if (is_null($item['status']))
                                                 <span class="badge text-bg-info">Pengajuan Baru</span>

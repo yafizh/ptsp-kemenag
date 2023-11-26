@@ -85,12 +85,13 @@
                                 @endif
                             </div>
                             <hr>
-                            <div class="mb-3">
-                                <label for="biaya_perjalanan_dinas" class="form-label d-block">Biaya Perjalanan
-                                    Dinas</label>
-                                @if (is_null($pengajuan['status']))
-                                    <select name="biaya_perjalanan_dinas" id="biaya_perjalanan_dinas" class="form-control"
-                                        required>
+
+                            @if (is_null($pengajuan['status']))
+                                <div class="mb-3">
+                                    <label for="biaya_perjalanan_dinas" class="form-label d-block">
+                                        Biaya Perjalanan Dinas
+                                    </label>
+                                    <select name="biaya_perjalanan_dinas" id="biaya_perjalanan_dinas" class="form-control">
                                         <option value="" selected disabled>Pilih Biaya Perjalanan Dinas</option>
                                         @foreach ($biayaPerjalananDinas as $item)
                                             <option value="{{ $item->id }}">
@@ -100,22 +101,31 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                @else
-                                    <input type="text" class="form-control"
-                                        value="{{ $pengajuan['biaya_perjalanan_dinas_tingkat'] }} | {{ number_format($pengajuan['biaya_perjalanan_dinas_range_dari'], 0, ',', '.') }} - {{ number_format($pengajuan['biaya_perjalanan_dinas_range_sampai'], 0, ',', '.') }}"
-                                        disabled>
+                                </div>
+                            @else
+                                @if ($pengajuan['status'] == \App\Enums\Pengajuan\PengajuanStatus::DISETUJUI)
+                                    <div class="mb-3">
+                                        <label for="biaya_perjalanan_dinas" class="form-label d-block">
+                                            Biaya Perjalanan Dinas
+                                        </label>
+                                        <input type="text" class="form-control"
+                                            value="{{ $pengajuan['biaya_perjalanan_dinas_tingkat'] }} | {{ number_format($pengajuan['biaya_perjalanan_dinas_range_dari'], 0, ',', '.') }} - {{ number_format($pengajuan['biaya_perjalanan_dinas_range_sampai'], 0, ',', '.') }}"
+                                            disabled>
+                                    </div>
                                 @endif
-                            </div>
+                            @endif
                             <div class="mb-3">
                                 <label for="keterangan" class="form-label">Keterangan</label>
                                 <textarea @disabled(!is_null($pengajuan['status'])) name="keterangan" id="keterangan" class="form-control" required>{{ $pengajuan['keterangan_verifikasi'] }}</textarea>
                             </div>
                             @if (!is_null($pengajuan['status']))
-                                <label class="form-label d-block">File SPDP</label>
-                                <a href="/{{ auth()->user()->status->route() }}/pengajuan-spdp/{{ $pengajuan['id'] }}/spdp"
-                                    target="_blank">
-                                    PDF File
-                                </a>
+                                @if ($pengajuan['status'] == \App\Enums\Pengajuan\PengajuanStatus::DISETUJUI)
+                                    <label class="form-label d-block">File SPDP</label>
+                                    <a href="/{{ auth()->user()->status->route() }}/pengajuan-spdp/{{ $pengajuan['id'] }}/spdp"
+                                        target="_blank">
+                                        PDF File
+                                    </a>
+                                @endif
                             @endif
                             @if (is_null($pengajuan['status']))
                                 <div class="d-flex justify-content-end gap-1">

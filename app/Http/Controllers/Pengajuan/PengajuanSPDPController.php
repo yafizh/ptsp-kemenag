@@ -14,6 +14,7 @@ use App\Models\Pengajuan\PengajuanTerverifikasi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PengajuanSPDPController extends Controller
 {
@@ -156,46 +157,31 @@ class PengajuanSPDPController extends Controller
 
     public function verifikasi(Request $request, Pengajuan $pengajuan)
     {
-        $validatedData = $request->validate([
-            'biaya_perjalanan_dinas'    => 'required',
-            'keterangan'                => 'required'
-        ]);
-
         $status = null;
-        if (is_null($request->get('terima')))
+
+        if ($request->has('terima'))
             $status = PengajuanStatus::DISETUJUI;
-        elseif (is_null($request->get('tolak')))
+        elseif ($request->has('tolak'))
             $status = PengajuanStatus::DITOLAK;
 
-        DB::transaction(function () use ($pengajuan, $validatedData, $status) {
+        DB::transaction(function () use ($request, $pengajuan, $status) {
             PengajuanTerverifikasi::create([
                 'id_pengajuan'              => $pengajuan->id,
                 'id_pengguna'               => auth()->user()->id,
                 'tanggal_waktu_verifikasi'  => Carbon::now('Asia/Kuala_Lumpur')->format('Y-m-d H:i:s'),
-                'keterangan'                => $validatedData['keterangan'],
+                'keterangan'                => $request->get('keterangan') ?? NULL,
                 'status'                    => $status
             ]);
 
-            PengajuanSPDPBiayaPerjalanDinas::create([
-                'id_pengajuan_spdp' => $pengajuan->pengajuanSPDP->id,
-                'id_biaya_perjalanan_dinas' => $validatedData['biaya_perjalanan_dinas']
-            ]);
+            if ($status === PengajuanStatus::DISETUJUI) {
+                PengajuanSPDPBiayaPerjalanDinas::create([
+                    'id_pengajuan_spdp'         => $pengajuan->pengajuanSPDP->id,
+                    'id_biaya_perjalanan_dinas' => $request->get('biaya_perjalanan_dinas')
+                ]);
+            }
         });
 
         return redirect('/' . auth()->user()->status->route() . '/pengajuan-spdp/' . $pengajuan->id)->with('success', 'Berhasil menerima pengajuan.');
-    }
-
-    public function tolak(Request $request, Pengajuan $pengajuan)
-    {
-        PengajuanTerverifikasi::create([
-            'id_pengajuan'              => $pengajuan->id,
-            'id_pengguna'               => auth()->user()->id,
-            'tanggal_waktu_verifikasi'  => Carbon::now('Asia/Kuala_Lumpur')->format('Y-m-d H:i:s'),
-            'keterangan'                => $request->get('keterangan_ditolak'),
-            'status'                    => PengajuanStatus::DITOLAK
-        ]);
-
-        return redirect('/' . auth()->user()->status->route() . '/pengajuan-spdp/' . $pengajuan->id)->with('success', 'Berhasil menolak pengajuan.');
     }
 
     public function laporan(Request $request)
