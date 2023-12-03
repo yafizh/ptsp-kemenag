@@ -7,6 +7,7 @@ use App\Models\Master\RumahIbadah;
 use App\Models\Permohonan\JenisPermohonan\PermohonanMagangPKL;
 use App\Models\Permohonan\JenisPermohonan\PermohonanPendaftaranRumahIbadah;
 use App\Models\Permohonan\JenisPermohonan\PermohonanPendaftaranRumahIbadahGambar;
+use App\Models\Permohonan\JenisPermohonan\PermohonanRiset;
 use App\Models\Permohonan\JenisPermohonan\PermohonanUkurKiblat;
 use App\Models\Permohonan\Pemohon;
 use App\Models\Permohonan\Permohonan;
@@ -179,5 +180,45 @@ class PermohonanController extends Controller
         });
 
         return redirect('/permohonan-pendaftaran-rumah-ibadah')->with('success', 'Berhasil mengajukan permohonan pendaftaran rumah ibadah.');
+    }
+
+    public function riset()
+    {
+        return view('permohonan.riset');
+    }
+
+    public function storeRiset(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nama_pemohon'          => 'required',
+            'nomor_telepon_pemohon' => 'required',
+            'asal_instansi'         => 'required',
+            'keperluan'             => 'required',
+            'tanggal_mulai'         => 'required',
+            'tanggal_selesai'       => 'required'
+        ]);
+
+        DB::transaction(function () use ($validatedData) {
+            $permohonan = Permohonan::create([
+                'tanggal_waktu_permohonan' => Carbon::now('Asia/Kuala_Lumpur')->format("Y-m-d H:i:s")
+            ]);
+
+
+            PermohonanRiset::create([
+                'id_permohonan'     => $permohonan->id,
+                'asal_instansi'     => $validatedData['asal_instansi'],
+                'keperluan'         => $validatedData['keperluan'],
+                'tanggal_mulai'     => $validatedData['tanggal_mulai'],
+                'tanggal_selesai'   => $validatedData['tanggal_selesai']
+            ]);
+
+            Pemohon::create([
+                'id_permohonan' => $permohonan->id,
+                'nama'          => $validatedData['nama_pemohon'],
+                'nomor_telepon' => $validatedData['nomor_telepon_pemohon']
+            ]);
+        });
+
+        return redirect('/permohonan-riset')->with('success', 'Berhasil mengajukan permohonan pendaftaran rumah ibadah.');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models\Permohonan;
 
 use App\Models\Permohonan\JenisPermohonan\PermohonanMagangPKL;
 use App\Models\Permohonan\JenisPermohonan\PermohonanPendaftaranRumahIbadah;
+use App\Models\Permohonan\JenisPermohonan\PermohonanRiset;
 use App\Models\Permohonan\JenisPermohonan\PermohonanUkurKiblat;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -47,5 +48,10 @@ class Permohonan extends Model
     public function pendaftaranRumahIbadah(): HasOne
     {
         return $this->hasOne(PermohonanPendaftaranRumahIbadah::class, 'id_permohonan', 'id');
+    }
+
+    public function riset(): HasOne
+    {
+        return $this->hasOne(PermohonanRiset::class, 'id_permohonan', 'id');
     }
 }

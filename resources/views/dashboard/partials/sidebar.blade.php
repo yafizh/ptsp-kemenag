@@ -135,7 +135,10 @@
                         <span>
                             <i class="ti ti-file-text"></i>
                         </span>
-                        <span class="hide-menu">Cuti</span>
+                        <span class="hide-menu">
+                            Cuti
+                            <strong>{{ $sidebarNotif['pengajuan_cuti'] > 0 ? '(' . $sidebarNotif['pengajuan_cuti'] . ')' : '' }}</strong>
+                        </span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -150,7 +153,10 @@
                         <span>
                             <i class="ti ti-file-text"></i>
                         </span>
-                        <span class="hide-menu">Surat Perintah Perjalanan Dinas (SPDP)</span>
+                        <span class="hide-menu">
+                            Surat Perintah Perjalanan Dinas (SPDP)
+                            <strong>{{ $sidebarNotif['pengajuan_spdp'] > 0 ? '(' . $sidebarNotif['pengajuan_spdp'] . ')' : '' }}</strong>
+                        </span>
                     </a>
                 </li>
                 @if (auth()->user()->status == \App\Enums\User\UserStatus::PIMPINAN ||
@@ -172,7 +178,28 @@
                             <span>
                                 <i class="ti ti-file-text"></i>
                             </span>
-                            <span class="hide-menu">Pendaftaran Rumah Ibadah</span>
+                            <span class="hide-menu">
+                                Pendaftaran Rumah Ibadah
+                                <strong>{{ $sidebarNotif['permohonan_pendaftaran_rumah_ibadah'] > 0 ? '(' . $sidebarNotif['permohonan_pendaftaran_rumah_ibadah'] . ')' : '' }}</strong>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class([
+                            'sidebar-link',
+                            'text-wrap',
+                            'active' =>
+                                request()->segment(2) == 'permohonan-riset' &&
+                                request()->segment(3) == '',
+                        ]) href="/{{ auth()->user()->status->route() }}/permohonan-riset"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-file-text"></i>
+                            </span>
+                            <span class="hide-menu">
+                                Riset
+                                <strong>{{ $sidebarNotif['permohonan_riset'] > 0 ? '(' . $sidebarNotif['permohonan_riset'] . ')' : '' }}</strong>
+                            </span>
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -186,7 +213,10 @@
                             <span>
                                 <i class="ti ti-file-text"></i>
                             </span>
-                            <span class="hide-menu">PKL/Magang</span>
+                            <span class="hide-menu">
+                                PKL/Magang
+                                <strong>{{ $sidebarNotif['permohonan_magang_pkl'] > 0 ? '(' . $sidebarNotif['permohonan_magang_pkl'] . ')' : '' }}</strong>
+                            </span>
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -200,7 +230,10 @@
                             <span>
                                 <i class="ti ti-file-text"></i>
                             </span>
-                            <span class="hide-menu">Pengukuran Kiblat</span>
+                            <span class="hide-menu">
+                                Pengukuran Kiblat
+                                <strong>{{ $sidebarNotif['permohonan_ukur_kiblat'] > 0 ? '(' . $sidebarNotif['permohonan_ukur_kiblat'] . ')' : '' }}</strong>
+                            </span>
                         </a>
                     </li>
                     <li class="nav-small-cap">
@@ -228,7 +261,8 @@
                                 request()->segment(2) == 'pengajuan-spdp' &&
                                 request()->segment(3) == 'laporan',
                         ])
-                            href="/{{ auth()->user()->status->route() }}/pengajuan-spdp/laporan" aria-expanded="false">
+                            href="/{{ auth()->user()->status->route() }}/pengajuan-spdp/laporan"
+                            aria-expanded="false">
                             <span>
                                 <i class="ti ti-report"></i>
                             </span>
@@ -281,6 +315,22 @@
                                 <i class="ti ti-report"></i>
                             </span>
                             <span class="hide-menu">Permohonan Pengukuran Kiblat</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class([
+                            'sidebar-link',
+                            'text-wrap',
+                            'active' =>
+                                request()->segment(2) == 'permohonan-riset' &&
+                                request()->segment(3) == 'laporan',
+                        ])
+                            href="/{{ auth()->user()->status->route() }}/permohonan-riset/laporan"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-report"></i>
+                            </span>
+                            <span class="hide-menu">Permohonan Riset</span>
                         </a>
                     </li>
                 @endif

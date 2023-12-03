@@ -16,6 +16,7 @@ use App\Http\Controllers\Pengajuan\PengajuanSPDPController;
 use App\Http\Controllers\Permohonan\PermohonanController;
 use App\Http\Controllers\Permohonan\PermohonanMagangPKLController;
 use App\Http\Controllers\Permohonan\PermohonanPendaftaranRumahIbadahController;
+use App\Http\Controllers\Permohonan\PermohonanRisetController;
 use App\Http\Controllers\Permohonan\PermohonanUkurKiblatController;
 use App\Http\Controllers\UploadFileController;
 use Illuminate\Support\Facades\Route;
@@ -75,6 +76,17 @@ Route::middleware('auth')->group(function () {
 
         Route::controller(PermohonanPendaftaranRumahIbadahController::class)
             ->prefix('/permohonan-pendaftaran-rumah-ibadah')
+            ->group(function () {
+                Route::get('/', 'index');
+                Route::get('/laporan', 'laporan');
+                Route::post('/laporan', 'laporan');
+                Route::post('/print', 'print');
+                Route::get('/{permohonan}', 'show');
+                Route::post('/{permohonan}/tolak', 'tolak');
+                Route::post('/{permohonan}/terima', 'terima');
+            });
+        Route::controller(PermohonanRisetController::class)
+            ->prefix('/permohonan-riset')
             ->group(function () {
                 Route::get('/', 'index');
                 Route::get('/laporan', 'laporan');
@@ -166,6 +178,17 @@ Route::middleware('auth')->group(function () {
                 Route::post('/{permohonan}/tolak', 'tolak');
                 Route::post('/{permohonan}/terima', 'terima');
             });
+        Route::controller(PermohonanRisetController::class)
+            ->prefix('/permohonan-riset')
+            ->group(function () {
+                Route::get('/', 'index');
+                Route::get('/laporan', 'laporan');
+                Route::post('/laporan', 'laporan');
+                Route::post('/print', 'print');
+                Route::get('/{permohonan}', 'show');
+                Route::post('/{permohonan}/tolak', 'tolak');
+                Route::post('/{permohonan}/terima', 'terima');
+            });
         Route::controller(PengajuanCutiController::class)
             ->prefix('/pengajuan-cuti')
             ->group(function () {
@@ -203,4 +226,6 @@ Route::controller(PermohonanController::class)
         Route::post('/permohonan-pengukuran-kiblat', 'storePengukuranKiblat');
         Route::get('/permohonan-pendaftaran-rumah-ibadah', 'pendaftaranRumahIbadah');
         Route::post('/permohonan-pendaftaran-rumah-ibadah', 'storePendaftaranRumahIbadah');
+        Route::get('/permohonan-riset', 'riset');
+        Route::post('/permohonan-riset', 'storeriset');
     });

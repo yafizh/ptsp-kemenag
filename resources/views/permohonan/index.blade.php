@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4 mb-3">
             <div class="card shadow border-0 h-100">
                 <div class="card-body text-center d-flex flex-column justify-content-between">
                     <h5>PERMOHONAN MAGANG / PKL</h5>
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4 mb-3">
             <div class="card shadow border-0 h-100">
                 <div class="card-body text-center d-flex flex-column justify-content-between">
                     <h5>PERMOHONAN PENGUKURAN KIBLAT</h5>
@@ -37,11 +37,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4 mb-3">
             <div class="card shadow border-0 h-100">
                 <div class="card-body text-center d-flex flex-column justify-content-between">
                     <h5>PERMOHONAN PENDAFTARAN <br> RUMAH IBADAH</h5>
                     <a href="/permohonan-pendaftaran-rumah-ibadah"
+                        class="btn btn-primary align-self-center rounded-1">LAKUKAN PENGAJUAN</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+            <div class="card shadow border-0 h-100">
+                <div class="card-body text-center d-flex flex-column justify-content-between">
+                    <h5>PERMOHONAN RISET</h5>
+                    <a href="/permohonan-riset"
                         class="btn btn-primary align-self-center rounded-1">LAKUKAN PENGAJUAN</a>
                 </div>
             </div>
