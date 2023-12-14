@@ -119,6 +119,18 @@
                             <span class="hide-menu">Jenis Transportasi</span>
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <a @class([
+                            'sidebar-link',
+                            'active' => request()->segment(2) == 'jenis-izin',
+                        ]) href="/{{ auth()->user()->status->route() }}/jenis-izin"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-license"></i>
+                            </span>
+                            <span class="hide-menu">Jenis Izin</span>
+                        </a>
+                    </li>
                 @endif
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>

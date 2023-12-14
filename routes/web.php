@@ -7,6 +7,7 @@ use App\Http\Controllers\Master\BiayaPerjalananDinasController;
 use App\Http\Controllers\Master\GolonganController;
 use App\Http\Controllers\Master\JabatanController;
 use App\Http\Controllers\Master\JenisCutiController;
+use App\Http\Controllers\Master\JenisIzinController;
 use App\Http\Controllers\Master\JenisKendaraanController;
 use App\Http\Controllers\Master\PangkatController;
 use App\Http\Controllers\Master\RumahIbadahController;
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('pegawai', PegawaiController::class);
         Route::resource('rumah-ibadah', RumahIbadahController::class);
         Route::resource('jenis-cuti', JenisCutiController::class);
+        Route::resource('jenis-izin', JenisIzinController::class);
         Route::resource('jenis-kendaraan', JenisKendaraanController::class);
         Route::resource('golongan', GolonganController::class);
         Route::resource('jabatan', JabatanController::class);
