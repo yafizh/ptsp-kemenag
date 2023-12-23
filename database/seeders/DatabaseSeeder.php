@@ -10,6 +10,7 @@ use Database\Seeders\Master\BiayaPerjalananDinasSeeder;
 use Database\Seeders\Master\GolonganSeeder;
 use Database\Seeders\Master\JabatanSeeder;
 use Database\Seeders\Master\JenisCutiSeeder;
+use Database\Seeders\Master\JenisIzinSeeder;
 use Database\Seeders\Master\JenisKendaraanSeeder;
 use Database\Seeders\Master\PangkatSeeder;
 use Database\Seeders\Master\RumahIbadahSeeder;
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
             RumahIbadahSeeder::class,
             JenisCutiSeeder::class,
             JenisKendaraanSeeder::class,
+            JenisIzinSeeder::class,
             BiayaPerjalananDinasSeeder::class
         ]);
     }
