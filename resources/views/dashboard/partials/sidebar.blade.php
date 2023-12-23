@@ -141,7 +141,7 @@
                         'sidebar-link',
                         'active' =>
                             request()->segment(2) == 'pengajuan-cuti' &&
-                            request()->segment(3) == '',
+                            request()->segment(3) !== 'laporan',
                     ]) href="/{{ auth()->user()->status->route() }}/pengajuan-cuti"
                         aria-expanded="false">
                         <span>
@@ -162,7 +162,7 @@
                         'text-wrap',
                         'active' =>
                             request()->segment(2) == 'pengajuan-spdp' &&
-                            request()->segment(3) == '',
+                            request()->segment(3) !== 'laporan',
                     ]) href="/{{ auth()->user()->status->route() }}/pengajuan-spdp"
                         aria-expanded="false">
                         <span>
@@ -182,7 +182,7 @@
                         'sidebar-link',
                         'active' =>
                             request()->segment(2) == 'pengajuan-izin' &&
-                            request()->segment(3) == '',
+                            request()->segment(3) !== 'laporan',
                     ]) href="/{{ auth()->user()->status->route() }}/pengajuan-izin"
                         aria-expanded="false">
                         <span>
@@ -209,7 +209,7 @@
                             'text-wrap',
                             'active' =>
                                 request()->segment(2) == 'permohonan-pendaftaran-rumah-ibadah' &&
-                                request()->segment(3) == '',
+                                request()->segment(3) !== 'laporan',
                         ])
                             href="/{{ auth()->user()->status->route() }}/permohonan-pendaftaran-rumah-ibadah"
                             aria-expanded="false">
@@ -231,7 +231,7 @@
                             'text-wrap',
                             'active' =>
                                 request()->segment(2) == 'permohonan-riset' &&
-                                request()->segment(3) == '',
+                                request()->segment(3) !== 'laporan',
                         ]) href="/{{ auth()->user()->status->route() }}/permohonan-riset"
                             aria-expanded="false">
                             <span>
@@ -251,7 +251,7 @@
                             'sidebar-link',
                             'active' =>
                                 request()->segment(2) == 'surat-pkl-magang' &&
-                                request()->segment(3) == '',
+                                request()->segment(3) !== 'laporan',
                         ])
                             href="/{{ auth()->user()->status->route() }}/permohonan-magang-pkl" aria-expanded="false">
                             <span>
@@ -271,7 +271,7 @@
                             'sidebar-link',
                             'active' =>
                                 request()->segment(2) == 'permohonan-ukur-kiblat' &&
-                                request()->segment(3) == '',
+                                request()->segment(3) !== 'laporan',
                         ])
                             href="/{{ auth()->user()->status->route() }}/permohonan-ukur-kiblat"
                             aria-expanded="false">
@@ -304,6 +304,21 @@
                                 <i class="ti ti-report"></i>
                             </span>
                             <span class="hide-menu">Peganjuan Cuti</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class([
+                            'sidebar-link',
+                            'active' =>
+                                request()->segment(2) == 'pengajuan-izin' &&
+                                request()->segment(3) == 'laporan',
+                        ])
+                            href="/{{ auth()->user()->status->route() }}/pengajuan-izin/laporan"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-report"></i>
+                            </span>
+                            <span class="hide-menu">Peganjuan Izin</span>
                         </a>
                     </li>
                     <li class="sidebar-item">

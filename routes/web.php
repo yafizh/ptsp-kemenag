@@ -13,6 +13,7 @@ use App\Http\Controllers\Master\PangkatController;
 use App\Http\Controllers\Master\RumahIbadahController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\Pengajuan\PengajuanCutiController;
+use App\Http\Controllers\Pengajuan\PengajuanIzinController;
 use App\Http\Controllers\Pengajuan\PengajuanSPDPController;
 use App\Http\Controllers\Permohonan\PermohonanController;
 use App\Http\Controllers\Permohonan\PermohonanMagangPKLController;
@@ -114,6 +115,20 @@ Route::middleware('auth')->group(function () {
                 'pengajuan-cuti' => 'pengajuan'
             ])->except('create');
 
+        Route::controller(PengajuanIzinController::class)
+            ->prefix('/pengajuan-izin')
+            ->group(function () {
+                Route::get('/laporan', 'laporan');
+                Route::post('/laporan', 'laporan');
+                Route::post('/print', 'print');
+                Route::post('/{pengajuan}/tolak', 'tolak');
+                Route::post('/{pengajuan}/terima', 'terima');
+            });
+        Route::resource('/pengajuan-izin', PengajuanIzinController::class)
+            ->parameters([
+                'pengajuan-izin' => 'pengajuan'
+            ])->except('create');
+
         Route::controller(PengajuanSPDPController::class)
             ->prefix('/pengajuan-spdp')
             ->group(function () {
@@ -132,6 +147,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [DashboardController::class, 'pegawai']);
         Route::resource('/pengajuan-cuti', PengajuanCutiController::class)
             ->parameters(['pengajuan-cuti' => 'pengajuan']);
+
+        Route::resource('/pengajuan-izin', PengajuanIzinController::class)
+            ->parameters(['pengajuan-izin' => 'pengajuan']);
 
         Route::controller(PengajuanSPDPController::class)
             ->prefix('/pengajuan-spdp')
@@ -156,6 +174,20 @@ Route::middleware('auth')->group(function () {
                 Route::post('/{permohonan}/tolak', 'tolak');
                 Route::post('/{permohonan}/terima', 'terima');
             });
+
+        Route::controller(PengajuanIzinController::class)
+            ->prefix('/pengajuan-izin')
+            ->group(function () {
+                Route::get('/laporan', 'laporan');
+                Route::post('/laporan', 'laporan');
+                Route::post('/print', 'print');
+                Route::post('/{pengajuan}/tolak', 'tolak');
+                Route::post('/{pengajuan}/terima', 'terima');
+            });
+        Route::resource('/pengajuan-izin', PengajuanIzinController::class)
+            ->parameters([
+                'pengajuan-izin' => 'pengajuan'
+            ])->except('create');
 
         Route::controller(PermohonanUkurKiblatController::class)
             ->prefix('/permohonan-ukur-kiblat')
