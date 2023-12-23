@@ -35,8 +35,8 @@
                                     <tr>
                                         <th class="text-center td-fit">{{ $loop->iteration }}</th>
                                         <td class="text-center">{{ $item->tingkat }}</td>
-                                        <td class="text-center">{{ $item->range_dari }}</td>
-                                        <td class="text-center">{{ $item->range_sampai }}</td>
+                                        <td class="text-center">{{ number_format($item->range_dari, 0, '.', '.') }}</td>
+                                        <td class="text-center">{{ number_format($item->range_sampai, 0, '.', '.') }}</td>
                                         <td class="td-fit">
                                             <div class="d-flex gap-1">
                                                 <a href="/{{ auth()->user()->status->route() }}/biaya-perjalanan-dinas/{{ $item->id }}/edit"

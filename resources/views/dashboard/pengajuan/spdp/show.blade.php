@@ -91,7 +91,7 @@
                                     <label for="biaya_perjalanan_dinas" class="form-label d-block">
                                         Biaya Perjalanan Dinas
                                     </label>
-                                    <select name="biaya_perjalanan_dinas" id="biaya_perjalanan_dinas" class="form-control">
+                                    <select name="biaya_perjalanan_dinas" id="biaya_perjalanan_dinas" class="form-control" required>
                                         <option value="" selected disabled>Pilih Biaya Perjalanan Dinas</option>
                                         @foreach ($biayaPerjalananDinas as $item)
                                             <option value="{{ $item->id }}">

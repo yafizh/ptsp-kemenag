@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Enums\User\UserStatus;
 use App\Models\Pengguna;
+use Database\Seeders\Master\BiayaPerjalananDinasSeeder;
 use Database\Seeders\Master\GolonganSeeder;
 use Database\Seeders\Master\JabatanSeeder;
 use Database\Seeders\Master\JenisCutiSeeder;
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
             RumahIbadahSeeder::class,
             JenisCutiSeeder::class,
             JenisKendaraanSeeder::class,
+            BiayaPerjalananDinasSeeder::class
         ]);
     }
 }

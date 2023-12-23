@@ -40,7 +40,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="range_sampai" class="form-label">Range Sampai</label>
-                                <input type="number" min="0" class="form-control" id="range_sampai" name="range_sampai"
+                                <input type="number" min="0" class="form-control" id="range_sampai"
+                                    name="range_sampai"
                                     value="{{ old('range_sampai', $biayaPerjalananDinas->range_sampai) }}" required>
                             </div>
                             <div class="d-flex justify-content-end">
@@ -52,4 +53,16 @@
             </div>
         </div>
     </div>
+    <script>
+        document
+            .getElementById('range_dari')
+            .addEventListener('keydown', phoneNumberFormat);
+        document
+            .getElementById('range_dari')
+            .addEventListener('keyup', function() {
+                const IDR = new Intl.NumberFormat('id-ID');
+                const value = this.value.split(".").join('');
+                this.value = IDR.format(value);
+            });
+    </script>
 @endsection

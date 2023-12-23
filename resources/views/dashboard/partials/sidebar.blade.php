@@ -149,7 +149,10 @@
                         </span>
                         <span class="hide-menu">
                             Cuti
-                            <strong>{{ $sidebarNotif['pengajuan_cuti'] > 0 ? '(' . $sidebarNotif['pengajuan_cuti'] . ')' : '' }}</strong>
+                            @if (auth()->user()->status == \App\Enums\User\UserStatus::PIMPINAN ||
+                                    auth()->user()->status == \App\Enums\User\UserStatus::ADMIN)
+                                <strong>{{ $sidebarNotif['pengajuan_cuti'] > 0 ? '(' . $sidebarNotif['pengajuan_cuti'] . ')' : '' }}</strong>
+                            @endif
                         </span>
                     </a>
                 </li>
@@ -167,7 +170,30 @@
                         </span>
                         <span class="hide-menu">
                             Surat Perintah Perjalanan Dinas (SPDP)
-                            <strong>{{ $sidebarNotif['pengajuan_spdp'] > 0 ? '(' . $sidebarNotif['pengajuan_spdp'] . ')' : '' }}</strong>
+                            @if (auth()->user()->status == \App\Enums\User\UserStatus::PIMPINAN ||
+                                    auth()->user()->status == \App\Enums\User\UserStatus::ADMIN)
+                                <strong>{{ $sidebarNotif['pengajuan_spdp'] > 0 ? '(' . $sidebarNotif['pengajuan_spdp'] . ')' : '' }}</strong>
+                            @endif
+                        </span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a @class([
+                        'sidebar-link',
+                        'active' =>
+                            request()->segment(2) == 'pengajuan-izin' &&
+                            request()->segment(3) == '',
+                    ]) href="/{{ auth()->user()->status->route() }}/pengajuan-izin"
+                        aria-expanded="false">
+                        <span>
+                            <i class="ti ti-file-text"></i>
+                        </span>
+                        <span class="hide-menu">
+                            Izin
+                            @if (auth()->user()->status == \App\Enums\User\UserStatus::PIMPINAN ||
+                                    auth()->user()->status == \App\Enums\User\UserStatus::ADMIN)
+                                <strong>{{ $sidebarNotif['pengajuan_izin'] > 0 ? '(' . $sidebarNotif['pengajuan_izin'] . ')' : '' }}</strong>
+                            @endif
                         </span>
                     </a>
                 </li>
@@ -192,7 +218,10 @@
                             </span>
                             <span class="hide-menu">
                                 Pendaftaran Rumah Ibadah
-                                <strong>{{ $sidebarNotif['permohonan_pendaftaran_rumah_ibadah'] > 0 ? '(' . $sidebarNotif['permohonan_pendaftaran_rumah_ibadah'] . ')' : '' }}</strong>
+                                @if (auth()->user()->status == \App\Enums\User\UserStatus::PIMPINAN ||
+                                        auth()->user()->status == \App\Enums\User\UserStatus::ADMIN)
+                                    <strong>{{ $sidebarNotif['permohonan_pendaftaran_rumah_ibadah'] > 0 ? '(' . $sidebarNotif['permohonan_pendaftaran_rumah_ibadah'] . ')' : '' }}</strong>
+                                @endif
                             </span>
                         </a>
                     </li>
@@ -210,7 +239,10 @@
                             </span>
                             <span class="hide-menu">
                                 Riset
-                                <strong>{{ $sidebarNotif['permohonan_riset'] > 0 ? '(' . $sidebarNotif['permohonan_riset'] . ')' : '' }}</strong>
+                                @if (auth()->user()->status == \App\Enums\User\UserStatus::PIMPINAN ||
+                                        auth()->user()->status == \App\Enums\User\UserStatus::ADMIN)
+                                    <strong>{{ $sidebarNotif['permohonan_riset'] > 0 ? '(' . $sidebarNotif['permohonan_riset'] . ')' : '' }}</strong>
+                                @endif
                             </span>
                         </a>
                     </li>
@@ -227,7 +259,10 @@
                             </span>
                             <span class="hide-menu">
                                 PKL/Magang
-                                <strong>{{ $sidebarNotif['permohonan_magang_pkl'] > 0 ? '(' . $sidebarNotif['permohonan_magang_pkl'] . ')' : '' }}</strong>
+                                @if (auth()->user()->status == \App\Enums\User\UserStatus::PIMPINAN ||
+                                        auth()->user()->status == \App\Enums\User\UserStatus::ADMIN)
+                                    <strong>{{ $sidebarNotif['permohonan_magang_pkl'] > 0 ? '(' . $sidebarNotif['permohonan_magang_pkl'] . ')' : '' }}</strong>
+                                @endif
                             </span>
                         </a>
                     </li>
@@ -238,13 +273,17 @@
                                 request()->segment(2) == 'permohonan-ukur-kiblat' &&
                                 request()->segment(3) == '',
                         ])
-                            href="/{{ auth()->user()->status->route() }}/permohonan-ukur-kiblat" aria-expanded="false">
+                            href="/{{ auth()->user()->status->route() }}/permohonan-ukur-kiblat"
+                            aria-expanded="false">
                             <span>
                                 <i class="ti ti-file-text"></i>
                             </span>
                             <span class="hide-menu">
                                 Pengukuran Kiblat
-                                <strong>{{ $sidebarNotif['permohonan_ukur_kiblat'] > 0 ? '(' . $sidebarNotif['permohonan_ukur_kiblat'] . ')' : '' }}</strong>
+                                @if (auth()->user()->status == \App\Enums\User\UserStatus::PIMPINAN ||
+                                        auth()->user()->status == \App\Enums\User\UserStatus::ADMIN)
+                                    <strong>{{ $sidebarNotif['permohonan_ukur_kiblat'] > 0 ? '(' . $sidebarNotif['permohonan_ukur_kiblat'] . ')' : '' }}</strong>
+                                @endif
                             </span>
                         </a>
                     </li>
@@ -259,7 +298,8 @@
                                 request()->segment(2) == 'pengajuan-cuti' &&
                                 request()->segment(3) == 'laporan',
                         ])
-                            href="/{{ auth()->user()->status->route() }}/pengajuan-cuti/laporan" aria-expanded="false">
+                            href="/{{ auth()->user()->status->route() }}/pengajuan-cuti/laporan"
+                            aria-expanded="false">
                             <span>
                                 <i class="ti ti-report"></i>
                             </span>
