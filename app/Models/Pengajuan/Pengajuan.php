@@ -3,6 +3,7 @@
 namespace App\Models\Pengajuan;
 
 use App\Models\Pengajuan\JenisPengajuan\PengajuanCuti;
+use App\Models\Pengajuan\JenisPengajuan\PengajuanFasilitas;
 use App\Models\Pengajuan\JenisPengajuan\PengajuanIzin;
 use App\Models\Pengajuan\JenisPengajuan\PengajuanSPDP;
 use App\Models\Pengguna;
@@ -19,6 +20,11 @@ class Pengajuan extends Model
     ];
 
     protected $table = 'pengajuan';
+
+    public function pengajuanFasilitas(): HasOne
+    {
+        return $this->hasOne(PengajuanFasilitas::class, 'id_pengajuan', 'id');
+    }
 
     public function pengajuanIzin(): HasOne
     {

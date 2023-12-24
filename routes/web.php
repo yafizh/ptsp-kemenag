@@ -13,6 +13,7 @@ use App\Http\Controllers\Master\PangkatController;
 use App\Http\Controllers\Master\RumahIbadahController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\Pengajuan\PengajuanCutiController;
+use App\Http\Controllers\Pengajuan\PengajuanFasilitasController;
 use App\Http\Controllers\Pengajuan\PengajuanIzinController;
 use App\Http\Controllers\Pengajuan\PengajuanSPDPController;
 use App\Http\Controllers\Permohonan\PermohonanController;
@@ -141,6 +142,19 @@ Route::middleware('auth')->group(function () {
         Route::resource('/pengajuan-spdp', PengajuanSPDPController::class)
             ->parameters(['pengajuan-spdp' => 'pengajuan'])
             ->except('create');
+
+        Route::controller(PengajuanFasilitasController::class)
+            ->prefix('/pengajuan-fasilitas')
+            ->group(function () {
+                Route::get('/laporan', 'laporan');
+                Route::post('/laporan', 'laporan');
+                Route::post('/print', 'print');
+                Route::post('/{pengajuan}/tolak', 'tolak');
+                Route::post('/{pengajuan}/terima', 'terima');
+            });
+        Route::resource('/pengajuan-fasilitas', PengajuanFasilitasController::class)
+            ->parameters(['pengajuan-fasilitas' => 'pengajuan'])
+            ->except('create');
     });
 
     Route::prefix(UserStatus::PEGAWAI->route())->group(function () {
@@ -150,6 +164,9 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('/pengajuan-izin', PengajuanIzinController::class)
             ->parameters(['pengajuan-izin' => 'pengajuan']);
+
+        Route::resource('/pengajuan-fasilitas', PengajuanFasilitasController::class)
+            ->parameters(['pengajuan-fasilitas' => 'pengajuan']);
 
         Route::controller(PengajuanSPDPController::class)
             ->prefix('/pengajuan-spdp')
@@ -188,6 +205,19 @@ Route::middleware('auth')->group(function () {
             ->parameters([
                 'pengajuan-izin' => 'pengajuan'
             ])->except('create');
+
+            Route::controller(PengajuanFasilitasController::class)
+            ->prefix('/pengajuan-fasilitas')
+            ->group(function () {
+                Route::get('/laporan', 'laporan');
+                Route::post('/laporan', 'laporan');
+                Route::post('/print', 'print');
+                Route::post('/{pengajuan}/tolak', 'tolak');
+                Route::post('/{pengajuan}/terima', 'terima');
+            });
+        Route::resource('/pengajuan-fasilitas', PengajuanFasilitasController::class)
+            ->parameters(['pengajuan-fasilitas' => 'pengajuan'])
+            ->except('create');
 
         Route::controller(PermohonanUkurKiblatController::class)
             ->prefix('/permohonan-ukur-kiblat')

@@ -159,6 +159,26 @@
                 <li class="sidebar-item">
                     <a @class([
                         'sidebar-link',
+                        'active' =>
+                            request()->segment(2) == 'pengajuan-fasilitas' &&
+                            request()->segment(3) !== 'laporan',
+                    ]) href="/{{ auth()->user()->status->route() }}/pengajuan-fasilitas"
+                        aria-expanded="false">
+                        <span>
+                            <i class="ti ti-file-text"></i>
+                        </span>
+                        <span class="hide-menu">
+                            Fasilitas
+                            @if (auth()->user()->status == \App\Enums\User\UserStatus::PIMPINAN ||
+                                    auth()->user()->status == \App\Enums\User\UserStatus::ADMIN)
+                                <strong>{{ $sidebarNotif['pengajuan_fasilitas'] > 0 ? '(' . $sidebarNotif['pengajuan_fasilitas'] . ')' : '' }}</strong>
+                            @endif
+                        </span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a @class([
+                        'sidebar-link',
                         'text-wrap',
                         'active' =>
                             request()->segment(2) == 'pengajuan-spdp' &&
@@ -304,6 +324,21 @@
                                 <i class="ti ti-report"></i>
                             </span>
                             <span class="hide-menu">Peganjuan Cuti</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a @class([
+                            'sidebar-link',
+                            'active' =>
+                                request()->segment(2) == 'pengajuan-fasilitas' &&
+                                request()->segment(3) == 'laporan',
+                        ])
+                            href="/{{ auth()->user()->status->route() }}/pengajuan-fasilitas/laporan"
+                            aria-expanded="false">
+                            <span>
+                                <i class="ti ti-report"></i>
+                            </span>
+                            <span class="hide-menu">Peganjuan Fasilitas</span>
                         </a>
                     </li>
                     <li class="sidebar-item">

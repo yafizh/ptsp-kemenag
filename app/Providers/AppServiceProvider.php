@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if (!app()->runningInConsole()) {
             $sidebarNotif = [
+                'pengajuan_fasilitas'                   => Pengajuan::whereHas('pengajuanFasilitas')->doesntHave('pengajuanTerverifikasi')->count(),
                 'pengajuan_cuti'                        => Pengajuan::whereHas('pengajuanCuti')->doesntHave('pengajuanTerverifikasi')->count(),
                 'pengajuan_izin'                        => Pengajuan::whereHas('pengajuanIzin')->doesntHave('pengajuanTerverifikasi')->count(),
                 'pengajuan_spdp'                        => Pengajuan::whereHas('pengajuanSPDP')->doesntHave('pengajuanTerverifikasi')->count(),
