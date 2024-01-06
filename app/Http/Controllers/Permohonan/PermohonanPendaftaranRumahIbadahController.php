@@ -49,6 +49,7 @@ class PermohonanPendaftaranRumahIbadahController extends Controller
             'luas_tanah'                 => $permohonan->pendaftaranRumahIbadah->luas_tanah,
             'luas_bangunan'              => $permohonan->pendaftaranRumahIbadah->luas_bangunan,
             'foto'                       => $permohonan->pendaftaranRumahIbadah->foto,
+            'dokumen_lampiran'           => $permohonan->pendaftaranRumahIbadah->dokumenLampiran,
             'status'                     => is_null($permohonan->permohonanTerverifikasi) ? null : $permohonan->permohonanTerverifikasi->status,
             'keterangan'                 => $permohonan->permohonanTerverifikasi->keterangan ?? ''
         ];

@@ -116,10 +116,20 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
-                            <label for="filepond" class="form-label">
-                                Foto Rumah Ibadah
-                            </label>
-                            <input type="file" id="filepond" name="foto[]" multiple required credits="false">
+                            <div>
+                                <label for="filepond-foto" class="form-label">
+                                    Foto Rumah Ibadah
+                                </label>
+                                <input type="file" id="filepond-foto" name="foto[]" multiple required
+                                    credits="false">
+                            </div>
+                            <div>
+                                <label for="filepond-dokumen-lampiran" class="form-label">
+                                    Dokumen Lampiran
+                                </label>
+                                <input type="file" id="filepond-dokumen-lampiran" name="dokumen_lampiran[]" multiple
+                                    required credits="false">
+                            </div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -138,10 +148,23 @@
         FilePond.registerPlugin(FilePondPluginImagePreview);
         FilePond.registerPlugin(FilePondPluginFileValidateType);
         // Get a reference to the file input element
-        const inputElement = document.querySelector('input[type="file"]');
-
-        const pond = FilePond.create(inputElement).setOptions({
+        const pondFoto = FilePond.create(document.querySelector('#filepond-foto')).setOptions({
             acceptedFileTypes: ['image/*'],
+            fileValidateTypeDetectType: (source, type) =>
+                new Promise((resolve, reject) => {
+                    resolve(type);
+                }),
+            server: {
+                process: '/uploads/process',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('input[name=_token]').value,
+                },
+            },
+            allowMultiple: true,
+        });
+
+        const pondDokumenLampiran = FilePond.create(document.querySelector('#filepond-dokumen-lampiran')).setOptions({
+            acceptedFileTypes: ['application/pdf'],
             fileValidateTypeDetectType: (source, type) =>
                 new Promise((resolve, reject) => {
                     resolve(type);

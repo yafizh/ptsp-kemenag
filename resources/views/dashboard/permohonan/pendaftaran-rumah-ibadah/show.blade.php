@@ -36,7 +36,34 @@
                         </div>
                     </div>
                 </div>
-                <input type="file" credits="false" name="foto[]" multiple disabled />
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Foto Rumah Ibadah</label>
+                            <ol>
+                                @foreach ($permohonan['foto'] as $foto)
+                                    <li>
+                                        <a href="{{ asset('storage/' . $foto->nama_file) }}" target="_blank">
+                                            {{ $foto->nama_file_asli }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ol>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Dokumen Lampiran</label>
+                            <ol>
+                                @foreach ($permohonan['dokumen_lampiran'] as $dokumenLampiran)
+                                    <li>
+                                        <a href="{{ asset('storage/' . $dokumenLampiran->nama_file) }}" target="_blank">
+                                            {{ $dokumenLampiran->nama_file_asli }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ol>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-12 col-md-8">
                 <div class="card">

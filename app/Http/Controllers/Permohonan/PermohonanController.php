@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Master\RumahIbadah;
 use App\Models\Permohonan\JenisPermohonan\PermohonanMagangPKL;
 use App\Models\Permohonan\JenisPermohonan\PermohonanPendaftaranRumahIbadah;
+use App\Models\Permohonan\JenisPermohonan\PermohonanPendaftaranRumahIbadahDokumenLampiran;
 use App\Models\Permohonan\JenisPermohonan\PermohonanPendaftaranRumahIbadahGambar;
 use App\Models\Permohonan\JenisPermohonan\PermohonanRiset;
 use App\Models\Permohonan\JenisPermohonan\PermohonanUkurKiblat;
@@ -131,7 +132,8 @@ class PermohonanController extends Controller
             'luas_tanah'                    => 'required',
             'luas_bangunan'                 => 'required',
             'nomor_telepon_rumah_ibadah'    => 'required',
-            'foto'                          => 'required'
+            'foto'                          => 'required',
+            'dokumen_lampiran'              => 'required'
         ]);
 
         DB::transaction(function () use ($validatedData) {
@@ -160,13 +162,30 @@ class PermohonanController extends Controller
                 $file = new File(Storage::path($foto));
                 $newFilename = now()->timestamp . '-' . Str::random(20) . '.' . $file->getExtension();
                 Storage::putFileAs(
-                    'public/permohonan-rumah-ibadah',
+                    'public/permohonan-rumah-ibadah/foto',
                     $file,
                     $newFilename
                 );
                 PermohonanPendaftaranRumahIbadahGambar::create([
                     'id_permohonan_pendaftaran_rumah_ibadah' => $permohonanPendaftaranRumahIbadah->id,
-                    'nama_file'      => 'permohonan-rumah-ibadah/' . $newFilename,
+                    'nama_file'      => 'permohonan-rumah-ibadah/foto/' . $newFilename,
+                    'nama_file_asli' => $uploadFile->nama_file_asli
+                ]);
+                $uploadFile->delete();
+            }
+
+            foreach ($validatedData['dokumen_lampiran'] as $dokumenLampiran) {
+                $uploadFile = UploadFile::where('nama_file', $dokumenLampiran)->first();
+                $file = new File(Storage::path($dokumenLampiran));
+                $newFilename = now()->timestamp . '-' . Str::random(20) . '.' . $file->getExtension();
+                Storage::putFileAs(
+                    'public/permohonan-rumah-ibadah/dokumen-lampiran',
+                    $file,
+                    $newFilename
+                );
+                PermohonanPendaftaranRumahIbadahDokumenLampiran::create([
+                    'id_permohonan_pendaftaran_rumah_ibadah' => $permohonanPendaftaranRumahIbadah->id,
+                    'nama_file'      => 'permohonan-rumah-ibadah/dokumen-lampiran/' . $newFilename,
                     'nama_file_asli' => $uploadFile->nama_file_asli
                 ]);
                 $uploadFile->delete();

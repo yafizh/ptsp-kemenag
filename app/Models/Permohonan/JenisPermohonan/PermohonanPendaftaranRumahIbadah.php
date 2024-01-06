@@ -35,4 +35,9 @@ class PermohonanPendaftaranRumahIbadah extends Model
     {
         return $this->hasMany(PermohonanPendaftaranRumahIbadahGambar::class, 'id_permohonan_pendaftaran_rumah_ibadah', 'id');
     }
+
+    public function dokumenLampiran(): HasMany
+    {
+        return $this->hasMany(PermohonanPendaftaranRumahIbadahDokumenLampiran::class, 'id_permohonan_pendaftaran_rumah_ibadah', 'id');
+    }
 }
