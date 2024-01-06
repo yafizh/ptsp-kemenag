@@ -35,10 +35,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/auth', [AuthController::class, 'auth']);
-Route::get('/logout', [AuthController::class, 'logout']);
-
 Route::middleware('auth')->group(function () {
     Route::prefix(UserStatus::ADMIN->route())->group(function () {
         Route::get('/', [DashboardController::class, 'admin']);
@@ -206,7 +202,7 @@ Route::middleware('auth')->group(function () {
                 'pengajuan-izin' => 'pengajuan'
             ])->except('create');
 
-            Route::controller(PengajuanFasilitasController::class)
+        Route::controller(PengajuanFasilitasController::class)
             ->prefix('/pengajuan-fasilitas')
             ->group(function () {
                 Route::get('/laporan', 'laporan');
@@ -278,6 +274,13 @@ Route::middleware('auth')->group(function () {
             ->parameters(['pengajuan-spdp' => 'pengajuan']);
     });
 });
+
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/auth', [AuthController::class, 'auth']);
+Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::get('/ganti-password', [AuthController::class, 'gantiPasswordHalaman']);
+Route::post('/ganti-password', [AuthController::class, 'gantiPassword']);
 
 Route::post('uploads/process', [UploadFileController::class, 'process']);
 

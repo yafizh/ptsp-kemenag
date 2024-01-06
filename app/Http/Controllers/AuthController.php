@@ -49,4 +49,24 @@ class AuthController extends Controller
 
         return redirect('/login');
     }
+
+    public function gantiPasswordHalaman()
+    {
+        return view('dashboard.ganti-password');
+    }
+
+    public function gantiPassword(Request $request)
+    {
+        $validatedData = $request->validate([
+            'password_baru'             => 'required',
+            'password_baru_konfirmasi'  => 'required'
+        ]);
+
+        if ($validatedData['password_baru'] !== $validatedData['password_baru_konfirmasi'])
+            return redirect('/ganti-password')->with('failed', 'Password baru tidak cocok.');
+
+        Auth::user()->update(['password' => $validatedData['password_baru']]);
+
+        return redirect('/ganti-password')->with('success', 'Berhasil ganti password.');
+    }
 }
