@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Pegawai\PegawaiJabatan;
 use App\Models\Master\Golongan;
 use App\Models\Master\Jabatan;
 use App\Models\Master\Pangkat;
