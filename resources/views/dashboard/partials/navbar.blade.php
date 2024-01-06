@@ -12,7 +12,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        @if (auth()->user()->status === \App\Enums\User\UserStatus::ADMIN)
+                        @if (is_null(auth()->user()->pegawai))
                             <img src="/assets/images/profile/blank-profile-picture.webp" alt="" width="35"
                                 height="35" class="rounded-circle">
                         @else
@@ -26,8 +26,7 @@
                                 <i class="ti ti-user fs-6"></i>
                                 <p class="mb-0 fs-3">Profil</p>
                             </a> --}}
-                            <a href="/ganti-password"
-                                class="d-flex align-items-center gap-2 dropdown-item">
+                            <a href="/ganti-password" class="d-flex align-items-center gap-2 dropdown-item">
                                 <i class="ti ti-settings fs-6"></i>
                                 <p class="mb-0 fs-3">Ganti Password</p>
                             </a>
